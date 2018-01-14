@@ -1,0 +1,6 @@
+1: package kr.co.infopub.chapter.s114;
+2: public class SilverStarMain {
+3: 	public static void main(String[] args) {
+4: 		 SilverStar.stepDia(15);
+5: 	}
+6: }

@@ -1,0 +1,51 @@
+01: package kr.co.infopub.chapter.s099;
+02: public class CardLaw {
+03: 	public boolean thirdCardPlayer(int x) { //플레이어의 세 번째 카드 
+04: 		boolean isC = false;
+05: 		if (x < 6) { // 플레이어의 카드 두 장의 합이 0~5까지일 때
+06: 			isC = true;
+07: 		}
+08: 		return isC;
+09: 	}
+10: 	public boolean thirdCardDealer(int x, int y) { //딜러의 세 번째 카드를 받는 조건
+11: 		boolean isC = false;
+12: 		if (x < 3) { //딜러 카드 두 장의 합이 0, 1, 2 일 때
+13: 			isC = true;
+14: 		}else if (x == 3 && y != 8) { 
+15: 			// 딜러 카드 두 장의 합이 3이고 플레이어 세 번째 카드가 8이 아닐 때
+16: 			isC = true;
+17: 		}else if (x == 4 && (x > 1 && y < 8)) {
+18: 			//딜러 카드 두 장의 합이 4이고 플레이어 세 번째 카드가 2~7일 때
+19: 			isC = true;
+20: 		}else if (x == 5 && (y > 3 && y < 8)) {
+21: 			//딜러 카드 두 장의 합이 5이고 플레이어 세 번째 카드가 4~7일 때
+22: 			isC = true;
+23: 		}else if (x == 6 && (y > 5 && y < 8)) {
+24: 			//딜러 카드 두 장의 합이 6이고 플레이어 세 번째 카드가 6, 7일 때
+25: 			isC = true;
+26: 		}	
+27: 		return isC;
+28: 	}
+29: 	public boolean stand(int x, int y) { //스탠드가 되는 조건
+30: 		boolean isC = false;
+31: 		
+32: 		if (x > 5 && x < 8) { // 플레이어의 두 장의 카드 합이 6, 7일 때
+33: 			if (x == y) { // 딜러의 두 장의 카드 합이 플레이어의 두 장의 카드 합과 같을 때
+34: 				isC = true;
+35: 			}
+36: 			isC = true;
+37: 		}else if (y == 7) { //딜러의 두 장의 카드 합이 7일 때
+38: 			isC = true;
+39: 		}	
+40: 		return isC;
+41: 	}
+42: 	public boolean natural(int x, int y) { // 예외 처리가 되는 조건
+43: 		boolean isE = false;
+44: 		if (x > 7 && x < 10) {
+45: 			isE = true;
+46: 		}else if (y > 7 && y < 10) {
+47: 			isE = true;
+48: 		}
+49: 		return isE;
+50: 	}
+51: }

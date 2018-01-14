@@ -1,0 +1,190 @@
+001: package kr.co.infopub.chapter.s137;
+002: 
+003: public class SongPuzzle {
+004: 	private int [][] puzzle;
+005: 	private int n;
+006: 	public int size(){
+007: 		int num=-1;
+008: 		if(puzzle!=null){
+009: 			num=puzzle.length*puzzle.length;
+010: 		}
+011: 		return  num;
+012: 	}
+013: 	public int getPuzzle(int r, int c){
+014: 		return puzzle[r][c];
+015: 	}
+016: 	public SongPuzzle(int n) {
+017: 		init(n);
+018: 	}
+019: 	public SongPuzzle() {
+020: 		this(4);
+021: 	}
+022: 	public SongPuzzle(int [][] pz) {
+023: 		this.n=pz.length;
+024: 		init(n);
+025: 		for (int i = 0; i < n; i++) {
+026: 			for (int j = 0; j <n; j++) {
+027: 				puzzle[i][j]=pz[i][j];
+028: 			}
+029: 		}
+030: 	}
+031: 	public void init(int n){
+032: 		this.n=n;
+033: 		puzzle=new int[n][n];
+034: 		for (int i = 0; i <n*n ; i++) {
+035: 			puzzle[i/n][i%n]=i;
+036: 		}//0~n*n-1
+037: 	}
+038: 	public void print(){
+039: 		int n=puzzle.length;
+040: 		for (int i = 0; i < n; i++) {
+041: 			for (int j = 0; j <n; j++) {
+042: 				System.out.printf("%2d\t",puzzle[i][j]);
+043: 			}
+044: 			System.out.println();
+045: 		}
+046: 		System.out.println();
+047: 	}
+048: 	private int num(){
+049: 		int row=puzzle.length;
+050: 		return (int)((row*row)*Math.random());
+051: 	}
+052: 	
+053: 	public void shuffle(){
+054: 		int row=puzzle.length;
+055: 		int col=puzzle[0].length;
+056: 		int [] sh=new int[row*col];
+057: 		SongPuzzleUtil.toTwoOne(puzzle, sh);
+058: 		for (int i = 0; i < sh.length; i++) {
+059: 			int temp=num();
+060: 			int mtemp=sh[i];
+061: 			sh[i]=sh[temp];
+062: 			sh[temp]=mtemp;
+063: 		}
+064: 		SongPuzzleUtil.toOneTwo(sh, puzzle);
+065: 	}
+066: 	private int invertnumber(){
+067: 		int row=puzzle.length;
+068: 		int col=puzzle[0].length;
+069: 		int [] sh=new int[row*col];
+070: 		int location=0;
+071: 		SongPuzzleUtil.toTwoOne(puzzle, sh);
+072: 		for (int i = 0; i < sh.length; i++) {
+073: 			if(sh[i]==0){location=i;break;}
+074: 		}
+075: 		int ivn=0;
+076: 		for (int i = 0; i < sh.length-1; i++) {
+077: 			for (int j = i+1; j < sh.length; j++) {
+078: 				if(i!=location && j!=location && sh[i]>sh[j] ){
+079: 					ivn++;
+080: 				}
+081: 			}
+082: 		}
+083: 		return ivn;
+084: 	}//
+085: 	private int zero(){
+086: 		int row=puzzle.length;
+087: 		int col=puzzle[0].length;
+088: 		int [] sh=new int[row*col];
+089: 		SongPuzzleUtil.toTwoOne(puzzle, sh);
+090: 		int znum=0;
+091: 		for (int i = 0; i < sh.length; i++) {
+092: 			if(sh[i]==0){
+093: 				znum=i/col;
+094: 				break;
+095: 			}
+096: 		}
+097: 		return znum;
+098: 	}
+099: 	private int zerocol(){
+100: 		int row=puzzle.length;
+101: 		int col=puzzle[0].length;
+102: 		int [] sh=new int[row*col];
+103: 		SongPuzzleUtil.toTwoOne(puzzle, sh);
+104: 		int znum=0;
+105: 		for (int i = 0; i < sh.length; i++) {
+106: 			if(sh[i]==0){
+107: 				znum=i%col;
+108: 				break;
+109: 			}
+110: 		}
+111: 		return znum;
+112: 	}
+113: 	private int oddzero(){
+114: 		int row=puzzle.length;
+115: 		int col=puzzle[0].length;
+116: 		int [] sh=new int[row*col];
+117: 		SongPuzzleUtil.toTwoOne(puzzle, sh);
+118: 		int znum=0;
+119: 		for (int i = 0; i < sh.length; i++) {
+120: 			if(sh[i]==0){
+121: 				znum=i;
+122: 				break;
+123: 			}
+124: 		}		
+125: 		return row*col-1-znum;
+126: 	}
+127: 	public int oddpuzle(){
+128: 		int num=0;
+129: 		int invert=invertnumber();
+130: 		num+=invert;
+131: 		num+=oddzero();
+132: 		num+=zero();
+133: 		num+=zerocol();
+134: 		return num;
+135: 	}
+136: 	public int evenpuzle(){
+137: 		int num=0;
+138: 		int invert=invertnumber();
+139: 		num+=invert;
+140: 		num+=puzzle.length;
+141: 		num+=zero();
+142: 		return num;
+143: 	}
+144: 	public void makePuzzle(boolean show){
+145: 		int num=0;
+146: 		do{
+147: 			shuffle();
+148: 			if(puzzle.length%2==0){
+149: 				num=evenpuzle();
+150: 			}else{
+151: 				num=oddpuzle();
+152: 			}
+153: 			if(show){
+154: 				if(puzzle.length%2==1 && num%2==0){
+155: 					System.out.println("Odd Possible Middle!");
+156: 					System.out.printf("IVN  : %d \n", invertnumber());
+157: 					System.out.printf("Odd Zero : %d \n", oddzero());
+158: 					System.out.printf("Zero : %d \n", zero());
+159: 					System.out.printf("Zerocol : %d \n", zerocol());
+160: 					System.out.printf("TOT  : %d \n", num);
+161: 					System.out.println("---------------------------");
+162: 				}else if(puzzle.length%2==0 && num%2==1){//È¦¼ö¸é °¡´É
+163: 					System.out.println("Even Possible Middle!");
+164: 					System.out.printf("Row  : %d \n", puzzle.length);
+165: 					System.out.printf("IVN  : %d \n", invertnumber());
+166: 					System.out.printf("Zero : %d \n", zero());
+167: 					System.out.printf("TOT  : %d \n", num);
+168: 					System.out.println("---------------------------");
+169: 				}else{
+170: 					if(puzzle.length%2==0){
+171: 						System.out.println("Even Impossible Middle!");
+172: 						System.out.printf("Row  : %d \n", puzzle.length);
+173: 						System.out.printf("IVN  : %d \n", invertnumber());
+174: 						System.out.printf("Zero : %d \n", zero());
+175: 						System.out.printf("TOT  : %d \n", num);
+176: 						System.out.println("---------------------------");
+177: 					}else{
+178: 						System.out.println("Odd Impossible Middle!");
+179: 						System.out.printf("IVN  : %d \n", invertnumber());
+180: 						System.out.printf("Odd Zero : %d \n", oddzero());
+181: 						System.out.printf("Zerocol : %d \n", zerocol());
+182: 						System.out.printf("Zero : %d \n", zero());
+183: 						System.out.printf("TOT  : %d \n", num);
+184: 						System.out.println("---------------------------");
+185: 					}
+186: 				}
+187: 			}
+188: 		}while((puzzle.length+num)%2==0);
+189: 	}
+190: }//

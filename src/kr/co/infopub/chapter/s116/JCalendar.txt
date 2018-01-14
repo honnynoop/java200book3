@@ -1,0 +1,73 @@
+01: package kr.co.infopub.chapter.s116;
+02: public class JCalendar {
+03:  public int [] 	LEAPY={31,29,31,30,31,30,31,31,30,31,30,31};
+04:  public int [] 	PLAIN={31,28,31,30,31,30,31,31,30,31,30,31};
+05: 
+06:  public boolean isLeapYear(int year){
+07: 	boolean isS=false;
+08: 	if( ((year%4==0)&&(year%100!=0)) || (year%400==0)){
+09: 		isS=true;
+10: 	}
+11: 	return isS;
+12:  }
+13:  public int total(int year){
+14: 	int tot=0;
+15: 	for (int i = 1; i < year; i++) {
+16: 		if(isLeapYear(i)){
+17: 			tot+=366;
+18: 		}else{
+19: 			tot+=365;
+20: 		}
+21: 	}
+22: 	return tot;
+23:  }
+24:  // 2017 2 ->2016 1
+25:  public int total(int year,int month){
+26: 	int tot=total(year);
+27: 	for (int i = 1; i < month; i++) {
+28: 		if(isLeapYear(year)){
+29: 			tot+=LEAPY[i-1];
+30: 		}else{
+31: 			tot+=PLAIN[i-1];
+32: 		}
+33: 	}
+34: 	return tot;
+35:  }//
+36:  public int total(int year,int month,int date){
+37: 	int tot=total(year, month);
+38: 	return tot+date;
+39:  }
+40:  public int lastDay(int year,int month){
+41: 	int tot=0;
+42: 	if(isLeapYear(year)){
+43: 		tot=LEAPY[month-1];
+44: 	}else{
+45: 		tot=PLAIN[month-1];
+46: 	}
+47: 	return tot;
+48:  }
+49:  public void showCal(int year, int month){
+50: 	String s1=String.format("\t\t%d년\t%d월",year,month);
+51: 	String t1=String.format("일\t월\t화\t수\t목\t금\t토");
+52: 	System.out.println(s1);
+53: 	System.out.println(t1);
+54: 	int dateOfMonth=(1+total(year,month,1)-1)%7;//요일
+55: 	for (int i = 0; i < dateOfMonth; i++) {
+56: 		System.out.print("\t");
+57: 	}
+58: 	for (int i = 1; i <= lastDay(year, month); i++) {
+59: 		System.out.printf("%d\t",i);
+60: 		if((i+dateOfMonth)%7==0){
+61: 			System.out.println();
+62: 		}
+63: 	}
+64: 	System.out.println("\n---------------------");
+65:  }
+66:  public void showCal(int year){
+67: 	String s1=String.format("\t\t\t%d년",year);
+68: 	System.out.println(s1);
+69: 	for (int i = 1; i < 13; i++) {
+70: 		showCal(year,i);
+71: 	}
+72:  }
+73: }

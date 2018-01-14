@@ -1,0 +1,110 @@
+001: package kr.co.infopub.chapter.s123;
+002: import java.util.ArrayList;
+003: public class RSA2 {
+004:  public static final int WHERETO=400;
+005:  public static final int START=200;
+006:  private int p=241;
+007:  private int q=83;
+008:  private int n;
+009:  private int phiN;
+010:  private int e;
+011:  private int d;
+012:  public void makePQ(){
+013: 	p=(int)(Math.random()*(START));
+014: 	q=(int)(Math.random()*(WHERETO+START));
+015: 	while((p==q)||
+016: 			(!Java200Math.isPrime(p)||
+017: 			!Java200Math.isPrime(q))){
+018: 		p=(int)(Math.random()*(START));
+019: 		q=(int)(Math.random()*(WHERETO+START));
+020: 	}
+021:  }
+022:  public void makeN(){
+023: 	n=p*q;
+024:  }
+025:  public int getN() {
+026: 	return n;
+027:  }
+028:  public void print(){
+029: 	System.out.printf("(p,q)=(%d, %d)\n"
+030: 	+ "(n,phi)=(%d,%d)\n(e,d)=(%d,%d)\n",
+031: 			p,q,n,phiN,e,d);
+032:  }
+033:  public void makePHIN(){
+034: 	this.phiN=(p-1)*(q-1);
+035:  }
+036:  public int getPhiN() {
+037: 	return phiN;
+038:  }
+039:  public void makeE(){
+040: 	ArrayList<Integer> 
+041: 	es=new ArrayList<Integer>();
+042: 	for (int i = 2; i < phiN; i++) {
+043: 		if(Java200Math.gcd(phiN, i)==1){
+044: 			es.add(i);
+045: 		}
+046: 	}
+047: 	e=es.get(es.size()-1);//가장큰것.(랜덤으로 만들면 좋다)
+048:  }
+049:  public void makeD(){
+050: 	int count=2;
+051: 	while(!(count*e%phiN==1 && count!=e)){
+052: 		count++;
+053: 	}
+054: 	d=count;
+055:  }
+056:  public int toCiph(int m){
+057: 	int tot=1;
+058: 	for (int i = 0; i < e; i++) {
+059: 		tot=(tot*m)%n;
+060: 	}
+061: 	return tot;
+062:  }
+063:  public int toUnCiph(int c){
+064: 	int tot=1;
+065: 	for (int i = 0; i < d; i++) {
+066: 		tot=(tot*c)%n;
+067: 	}
+068: 	return tot;
+069:  }
+070:  public static void main(String[] args) {
+071: 	RSA2 aa=new RSA2();
+072: 	//aa.makePQ();
+073: 	aa.makeN();
+074: 	aa.makePHIN();
+075: 	aa.makeE();
+076: 	aa.makeD();
+077: 	aa.print();
+078: 	int a=65;
+079: 	int b=66;
+080: 	int c=67;
+081: 	int d=68;
+082: 	System.out.printf("원본 %d\t%d\t%d\t%d\n",a,b,c,d);
+083: 	int ca=aa.toCiph(a);
+084: 	int cb=aa.toCiph(b);
+085: 	int cc=aa.toCiph(c);
+086: 	int cd=aa.toCiph(d);
+087: 	System.out.printf("암호 %d\t%d\t%d\t%d\n",ca,cb,cc,cd);
+088: 	System.out.printf("복호 %d\t%d\t%d\t%d\n",
+089: 			aa.toUnCiph(ca),aa.toUnCiph(cb),
+090: 			aa.toUnCiph(cc),aa.toUnCiph(cd));
+091: 	
+092: 	System.out.println("----------------------");
+093: 	for(int i=65 ; i<200 ;i++){
+094: 		int bbb=aa.toCiph(i);
+095: 		int ccc=aa.toUnCiph(bbb);
+096: 		System.out.println(String.format("%d, %d, %d", i,bbb,ccc));
+097: 	}
+098: 	System.out.println("---------------------");
+099: 	String h="가나다라마바사안녕하세요";
+100: 	char[] ch=h.toCharArray();
+101: 	
+102: 	for (int i = 0; i < ch.length; i++) {
+103: 		int tt=(int)ch[i]-44000;
+104: 		int jj=aa.toCiph(tt);
+105: 		int kk=aa.toUnCiph(jj);
+106: 		System.out.printf(
+107: 	"%d %d\t%c\n",tt,jj,(char)(kk+44000) );
+108: 	}
+109:  }
+110: }

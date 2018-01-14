@@ -1,0 +1,19 @@
+01: package kr.co.infopub.chapter.s097;
+02: public class CardRuleMain {
+03: 	public static void main(String[] args) {
+04: 		CardCase cc=new CardCase();   // 카드저장
+05: 		cc.make();                    // 카드 만들고
+06: 		CardRule rule=new CardRule(); // 족보
+07: 		
+08: 		for(int i=0; i<5; i++){
+09: 			System.out.println("--------------------------");
+10: 			cc.shuffle();             // 카드 섞기
+11: 			cc.print();
+12: 			int a=rule.rule(cc.getCard(0), cc.getCard(2));
+13: 			int b=rule.rule(cc.getCard(1), cc.getCard(3)); 
+14: 			System.out.println(cc.getCard(0) +"  "+ cc.getCard(2)+" "+a);
+15: 			System.out.println(cc.getCard(1) +"  "+ cc.getCard(3)+" "+b);
+16: 		}
+17: 		System.out.println("--------------------------");
+18: 	}
+19: }

@@ -1,0 +1,76 @@
+01: <?xml version="1.0" encoding="UTF-8"?>
+02: <class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+03:   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+04:   <class id="1" language="java" name="kr.co.infopub.chapter.s100.MagicSquare" project="java200new" 
+05:     file="/java200new/src/kr/co/infopub/chapter/s100/MagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+06:     <position height="-1" width="-1" x="490" y="184"/>    
+07:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+08:       sort-features="false" accessors="true" visibility="true">      
+09:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+10:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+11:     </display>  
+12:   </class>  
+13:   <class id="2" language="java" name="kr.co.infopub.chapter.s100.OddMagicSquare" project="java200new" 
+14:     file="/java200new/src/kr/co/infopub/chapter/s100/OddMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+15:     <position height="-1" width="-1" x="265" y="477"/>    
+16:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+17:       sort-features="false" accessors="true" visibility="true">      
+18:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+19:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+20:     </display>  
+21:   </class>  
+22:   <class id="3" language="java" name="kr.co.infopub.chapter.s100.FourMagicSquare" project="java200new" 
+23:     file="/java200new/src/kr/co/infopub/chapter/s100/FourMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+24:     <position height="-1" width="-1" x="491" y="469"/>    
+25:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+26:       sort-features="false" accessors="true" visibility="true">      
+27:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+28:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+29:     </display>  
+30:   </class>  
+31:   <class id="4" language="java" name="kr.co.infopub.chapter.s100.SixMagicSquare" project="java200new" 
+32:     file="/java200new/src/kr/co/infopub/chapter/s100/SixMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+33:     <position height="-1" width="-1" x="737" y="454"/>    
+34:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+35:       sort-features="false" accessors="true" visibility="true">      
+36:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+37:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+38:     </display>  
+39:   </class>  
+40:   <class id="5" language="java" name="kr.co.infopub.chapter.s100.MagicPrint" project="java200new" 
+41:     file="/java200new/src/kr/co/infopub/chapter/s100/MagicPrint.java" binary="false" corner="BOTTOM_RIGHT">    
+42:     <position height="112" width="161" x="675" y="130"/>    
+43:     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+44:       sort-features="false" accessors="true" visibility="true">      
+45:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+46:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+47:     </display>  
+48:   </class>  
+49:   <generalization id="6">    
+50:     <end type="SOURCE" refId="2"/>    
+51:     <end type="TARGET" refId="1"/>  
+52:   </generalization>  
+53:   <dependency id="7">    
+54:     <bendpoint x="524" y="614"/>    
+55:     <end type="SOURCE" refId="4"/>    
+56:     <end type="TARGET" refId="2"/>  
+57:   </dependency>  
+58:   <generalization id="8">    
+59:     <end type="SOURCE" refId="3"/>    
+60:     <end type="TARGET" refId="1"/>  
+61:   </generalization>  
+62:   <dependency id="9">    
+63:     <end type="SOURCE" refId="5"/>    
+64:     <end type="TARGET" refId="1"/>  
+65:   </dependency>  
+66:   <generalization id="10">    
+67:     <end type="SOURCE" refId="4"/>    
+68:     <end type="TARGET" refId="1"/>  
+69:   </generalization>  
+70:   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+71:     sort-features="false" accessors="true" visibility="true">    
+72:     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+73:     <operations public="true" package="true" protected="true" private="true" static="true"/>  
+74:   </classifier-display>  
+75:   <association-display labels="true" multiplicity="true"/>
+76: </class-diagram>

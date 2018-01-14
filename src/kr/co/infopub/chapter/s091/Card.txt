@@ -1,0 +1,30 @@
+01: package kr.co.infopub.chapter.s091;
+02: public class Card {
+03: 	private String cardVal; // H8, H6, ...
+04: 	public String getCardVal() {
+05: 		return cardVal;
+06: 	}
+07:     // 기본(디볼트) 생성자
+08: 	public Card() {
+09: 		//0~3
+10: 		int suit=(int)(Math.random()*CardUtil.SUIT.length);
+11: 		//0~12
+12: 		int valu=(int)(Math.random()*CardUtil.VALU.length);
+13: 		//임의의 카드 값을 갖는다. H8, H6, ...
+14: 		cardVal=CardUtil.SUIT[suit]+CardUtil.VALU[valu];
+15: 	}
+16: 	// 테스트용
+17: 	public Card(String s) {
+18: 		this.cardVal=s;  // 문자열은 값복사
+19: 	}
+20: 	// 복사 생성자
+21: 	public Card(Card c) {      // 다른 카드의 카드값만 가져온다.
+22: 		this(c.getCardVal());  // 문자열은 값복사
+23: 		// this.cardVal=c.getCardVal(); //동일
+24: 	}
+25: 	// cardVal 내용 
+26: 	@Override
+27: 	public String toString() {
+28: 		return "[" + cardVal + "]";
+29: 	}
+30: }//

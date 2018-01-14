@@ -1,0 +1,29 @@
+01: package kr.co.infopub.chapter.s090;
+02: // 객체 - 중요한 데이터를 저장
+03: public class Card {
+04: 	// 데이터 보호- 은닉화 - 접근 제한자 private
+05: 	private String cardVal; // H8, H6, ...
+06: 	// 멤버 접근 메서드
+07: 	public String getCardVal() {
+08: 		return cardVal;
+09: 	}
+10: 	// 기본 생성자 - 멤버 초기화
+11: 	public Card() {
+12: 		this("H2");  //아래와 동일
+13: 		//this.cardVal="H2";
+14: 	}
+15: 	// 테스트용
+16: 	public Card(String s) {
+17: 		this.cardVal=s;  // 문자열은 값복사
+18: 	}
+19: 	// 복사 생성자
+20: 	public Card(Card c) {
+21: 		this(c.getCardVal());  // 문자열은 값복사
+22: 		// this.cardVal=c.getCardVal(); //동일
+23: 	}
+24: 	// cardVal 내용  [H3]
+25: 	@Override
+26: 	public String toString() {
+27: 		return "[" + cardVal + "]";
+28: 	}
+29: }//

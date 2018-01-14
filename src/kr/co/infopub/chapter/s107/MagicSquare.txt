@@ -1,0 +1,84 @@
+01: package kr.co.infopub.chapter.s107;
+02: 
+03: public abstract class MagicSquare implements IMagicSquare{
+04: 	
+05: 	protected int [][] magic;     // 자식이 public처럼 사용
+06: 	protected int n;              // 자식이 public처럼 사용
+07: 
+08: 	public int[][] getMagic() {
+09: 		return magic;
+10: 	}
+11: 	// 반듯이 int를 입력받아야하는 생성자
+12: 	public MagicSquare(int n) {
+13: 		magic=new int[n][n];
+14: 		this.n=n;
+15: 	}
+16:     // 기본 생성자 제거
+17: 	//public MagicSquare() {}
+18: 	// 아래는 abstract가 되는 예 3가지
+19: 	//                             // 인터페이스 구현안함
+20: 	//public void make( ){ }       // 상속 강요
+21: 	//public abstract void make(); // 구현 안했다.
+22: 	
+23: 	public void print(){
+24: 		System.out.println();
+25: 		System.out.println(n+" is magic : "+isMagic());
+26: 		for (int i = 0; i < n; i++) {
+27: 			for (int j = 0; j < n; j++) {
+28: 				System.out.print(magic[i][j]+"\t");
+29: 			}
+30: 			System.out.println();
+31: 		}
+32: 	}
+33: 	//마방진이 잘 되었는가를 판단
+34: 	protected  boolean isMagic( ){  // 자식이 public처럼 사용
+35: 		boolean isM=true;
+36: 		int[ ]m=new int[2*n+2];
+37: 		for (int i = 0; i < n; i++) {
+38: 			m[i]=sumRow(i);
+39: 			m[i+n]=sumCol(i);
+40: 		}
+41: 		m[2*n]=sumReverseDia();
+42: 		m[2*n+1]=sumDia();
+43: 		for (int i = 1; i < m.length; i++) {
+44: 			if(m[0]==0 || m[0]!=m[i]){
+45: 				isM=false;
+46: 				break;
+47: 			}
+48: 		}
+49: 		return isM;
+50: 	}
+51: 	//row 행의 열들의 합
+52: 	private int sumRow(int row){
+53: 		int tot=0;
+54: 		for (int i = 0; i < n; i++) {
+55: 			tot+=magic[row][i];
+56: 		}
+57: 		return tot;
+58: 	}
+59: 	
+60: 	//col 열의(열고정)  행들의 합
+61: 	private int sumCol(int col){
+62: 		int tot=0;
+63: 		for (int i = 0; i < n; i++) {
+64: 			tot+=magic[i][col];
+65: 		}
+66: 		return tot;
+67: 	}
+68: 	
+69: 	private int sumDia(){
+70: 		int tot=0;
+71: 		for (int i = 0; i < n ; i++) {
+72: 			tot+=magic[i][n-1-i];
+73: 		}
+74: 		return tot;
+75: 	}
+76: 	
+77: 	private int sumReverseDia(){
+78: 		int tot=0;
+79: 		for (int i = 0; i < n ; i++) {
+80: 			tot+=magic[i][i];
+81: 		}
+82: 		return tot;
+83: 	}
+84: }

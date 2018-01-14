@@ -1,0 +1,145 @@
+001: package kr.co.infopub.chapter.s122;
+002: // 완전수, 
+003: public class Java200Math {
+004: 	public static void printPerfect(int t1, int t2){
+005: 		for (int i = t1; i < t2; i++) {
+006: 			if(i==divide(i)){//완전수
+007: 				System.out.printf("%d는 완전 수: ",i);
+008: 				printDivide(i);
+009: 			}
+010: 		}
+011: 	}
+012: 	public static void printAmicable(int t1, int t2){
+013: 		for (int i = t1; i < t2; i++) {
+014: 			int a=i;
+015: 			int b=divide(a);
+016: 			int c=divide(b);
+017: 			//System.out.println(i);
+018: 			if(a<b && a==c){//같은 수 반복금지
+019: 				System.out.printf("(%d,%d)는 친화 수: ",a,b);
+020: 				printDivide(a);
+021: 				printDivide(b);
+022: 			}
+023: 		}
+024: 	}
+025: 	public static void printSociable5(int t1, int t2){
+026: 		for (int i = t1; i < t2; i++) {
+027: 			int a=i;
+028: 			int b=divide(a);
+029: 			int c=divide(b);
+030: 			int d=divide(c);
+031: 			int e=divide(d);
+032: 			int f=divide(e);
+033: 			if(a<b && a<e && a!=c && b!=d && a==f){
+034: 				System.out.printf("(%d,%d, %d,%d, %d)는 Sociable수\n",a,b,c,d,e);
+035: 				System.out.println(b);
+036: 				System.out.println(c);
+037: 				System.out.println(d);
+038: 				System.out.println(e);
+039: 				System.out.println(f);
+040: 			}
+041: 		}
+042: 	}
+043: 	public static void main(String[] args) {
+044: 		printAmicable(2,20000);
+045: 		printPerfect(2,20000);
+046: 		printSociable5(2,20000);
+047: 	}
+048: 	public static void printDivide(int n){
+049: 		if(n==1){
+050: 			System.out.println("[1]");
+051: 		}else{
+052: 			System.out.printf("[1,");
+053: 			for (int i = 2; i <n; i++) {
+054: 				if(n%i==0){
+055: 					System.out.printf("%d,",i);
+056: 				}
+057: 			}
+058: 			System.out.println(n+"]");
+059: 		}
+060: 	}
+061: 	// recursion 재귀
+062: 	public static int gcd(int m, int n){
+063: 		if(m==1 || n==1 ){
+064: 			return 1;
+065: 		}else if( m==n){
+066: 			return m;
+067: 		}else if(m>n){
+068: 			return gcd(m-n,n);
+069: 		}else{
+070: 			return gcd(m,n-m);
+071: 		}
+072: 	}
+073: 	public static boolean isPrime(int n){
+074: 		boolean isS=true;
+075: 		for (int i = 2; i <=(int)Math.sqrt(n); i++) {
+076: 			if(n%i==0){
+077: 				isS=false;
+078: 				break;
+079: 			}
+080: 		}
+081: 		return isS;
+082: 	}//
+083: 	public static void printPrime(){
+084: 		for (int i = 10000; i < 20000; i++) {
+085: 			if(isPrime(i)){
+086: 				System.out.println(i);
+087: 			}
+088: 		}
+089: 	}
+090: 	public static int sumEach(int n){
+091: 		int tot=0;
+092: 		while(n!=0){
+093: 			tot+=n%10;// 3 -> 2-> 1
+094: 			n/=10;//123-> 12-> 1->0
+095: 		}
+096: 		return tot;
+097: 	}//
+098: 	public static int sumSmith(int n){
+099: 		int tot=0;
+100: 		int a=2;
+101: 		while(n!=1){
+102: 			if(n%a==0){
+103: 				tot+=sumEach(a);
+104: 				n/=a;
+105: 			}else{
+106: 				a++;
+107: 			}
+108: 		}
+109: 		return tot;
+110: 	}
+111: 	public static void printSmith(int t1, int t2){
+112: 		for (int i = t1; i < t2; i++) {
+113: 			if(!isPrime(i) && sumEach(i)==sumSmith(i)){//스미스
+114: 				System.out.printf("%d는 스미스 수: ",i);
+115: 				printPrimeDivide(i);
+116: 			}
+117: 		}
+118: 	}
+119: 	
+120: 	public static void printPrimeDivide(int n){
+121: 		int a=2;
+122: 		while(n!=1){
+123: 			if(n%a==0){
+124: 				if(n/a==1){
+125: 					System.out.println(a);
+126: 				}else{
+127: 					System.out.print(a+"x");
+128: 				}
+129: 				n/=a;
+130: 			}else{
+131: 				a++;
+132: 			}
+133: 		}
+134: 	}
+135:     //자신을 제외한 약수의 합 divide(6)=1+2+3
+136: 	public static int divide(int num){
+137: 		int tot=1;
+138: 		for(int i=2; i<num ; i++){
+139: 			if(num%i==0){
+140: 				tot+=i;
+141: 			}
+142: 		}
+143: 		return tot;
+144: 	}
+145: }

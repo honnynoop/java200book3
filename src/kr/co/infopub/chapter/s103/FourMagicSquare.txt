@@ -1,0 +1,98 @@
+01: package kr.co.infopub.chapter.s103;
+02: public class FourMagicSquare{
+03:  private int[][] magic;
+04:  private int n;
+05:  
+06:  public int[][] getMagic() {
+07: 	return magic;
+08:  }
+09:  public FourMagicSquare(int n) {
+10: 	magic=new int [n][ n ];  
+11: 	this.n=n;
+12:  }
+13:  public FourMagicSquare() {
+14: 	this(4);
+15:  }
+16:  public void make(){
+17: 	makeA();
+18: 	makeR();
+19:  }
+20:  private void makeR() {
+21: 	for (int i = 0; i < n; i++) {
+22: 		for (int j = 0; j < n; j++) {
+23: 			if ((i >= 0 && i < n / 4) || (i >= n / 4 * 3 && i < n)) {
+24: 				if (j >= n / 4 && j < n / 4 * 3) {
+25: 					magic[i][j] = n * n - (i * n + j);
+26: 				}
+27: 			} else {// i가 중앙
+28: 				if ((j >= 0 && j < n / 4) || (j >= n / 4 * 3 && j < n)) {// 양쪽
+29: 					magic[i][j] = n * n - (i * n + j);
+30: 				}
+31: 			}
+32: 		}
+33: 	}
+34:  }
+35:  private void makeA() {
+36: 	for (int i = 0; i <n*n; i++) {
+37: 		magic[i/n][i%n]= i+1;
+38: 	}
+39:  }
+40:  public void print(){
+41: 	System.out.println();
+42: 	System.out.println(n+" is magic : "+isMagic());
+43: 	for (int i = 0; i < n; i++) {
+44: 		for (int j = 0; j < n; j++) {
+45: 			System.out.print(magic[i][j]+"\t");
+46: 		}
+47: 		System.out.println();
+48: 	}
+49:  }
+50:  // row 행의 열들의 합
+51:  private int sumRow(int row){
+52: 	int tot=0;
+53: 	for (int i = 0; i < n; i++) {
+54: 		tot+=magic[row][i];
+55: 	}
+56: 	return tot;
+57:  }
+58:  // col 열의(열고정)  행들의 합
+59:  private int sumCol(int col){
+60: 	int tot=0;
+61: 	for (int i = 0; i < n; i++) {
+62: 		tot+=magic[i][col];
+63: 	}
+64: 	return tot;
+65:  } 
+66:  private int sumDia(){
+67: 	int tot=0;
+68: 	for (int i = 0; i < n ; i++) {
+69: 		tot+=magic[i][n-1-i];
+70: 	}
+71: 	return tot;
+72:  }
+73:  private int sumReverseDia(){
+74: 	int tot=0;
+75: 	for (int i = 0; i < n ; i++) {
+76: 		tot+=magic[i][i];
+77: 	}
+78: 	return tot;
+79:  }
+80:  // 마방진이 잘 되었는가를 판단
+81:  private  boolean isMagic( ){
+82: 	boolean isM=true;
+83: 	int[ ]m=new int[2*n+2];
+84: 	for (int i = 0; i < n; i++) {
+85: 		m[i]=sumRow(i);
+86: 		m[i+n]=sumCol(i);
+87: 	}
+88: 	m[2*n]=sumReverseDia();
+89: 	m[2*n+1]=sumDia();
+90: 	for (int i = 1; i < m.length; i++) {
+91: 		if(m[0]==0 || m[0]!=m[i]){
+92: 			isM=false;
+93: 			break;
+94: 		}
+95: 	}
+96: 	return isM;
+97:  }
+98: }

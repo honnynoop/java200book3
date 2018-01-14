@@ -1,0 +1,26 @@
+01: package kr.co.infopub.chapter.s097;
+02: 
+03: public class CardUtil {
+04: 	public static final int SUTDA=2;
+05: 	public static final String[] SUIT={"H","C"};
+06: 	public static final String[] VALU={"A","2","3","4","5","6","7","8","9","T"};    
+07: 	 
+08: 	public static int toVal(Card c){
+09: 		 return toVal(c.getCardVal().charAt(1));
+10: 	}
+11: 	public static int toVal(Card c, int index){
+12: 		 return toVal(c.getCardVal().charAt(index));
+13: 	}
+14: 	public static int toVal(char cc){
+15: 		int tot=0;
+16: 		switch (cc) {
+17: 		 	case 'A':tot=1;break;
+18: 		 	case 'T':tot=10;break;
+19: 		 	case 'J':tot=11;break;
+20: 		 	case 'Q':tot=12;break;
+21: 		 	case 'K':tot=13;break;
+22: 		 	default: tot=cc-'0';break;
+23: 		}
+24: 		 return tot;
+25: 	 }
+26: }

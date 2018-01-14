@@ -1,0 +1,143 @@
+001: package kr.co.infopub.chapter.s137;
+002: public class FifteenPuzzle {
+003:  private int [][] puzzle;
+004:  private int n;
+005:  public FifteenPuzzle(int n) {
+006: 	init(n);
+007:  }
+008:  public FifteenPuzzle() {
+009: 	this(4);
+010:  }
+011:  public void init(int n){
+012: 	this.n=n;
+013: 	puzzle=new int[n][n];
+014: 	for (int i = 0; i <n*n ; i++) {
+015: 		puzzle[i/n][i%n]=i;
+016: 	}//0~n*n-1
+017:  }
+018:  public int getPuzzle(int r, int c){
+019: 	return puzzle[r][c];
+020:  }
+021:  private int num(){
+022: 	int row=puzzle.length;
+023: 	return (int)((row*row)*Math.random());
+024:  }
+025:  public void shuffle(){
+026: 	int row=puzzle.length;
+027: 	int col=puzzle[0].length;
+028: 	int [] sh=new int[row*col];
+029: 	FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+030: 	for (int i = 0; i < sh.length; i++) {
+031: 		int temp=num();
+032: 		int mtemp=sh[i];
+033: 		sh[i]=sh[temp];
+034: 		sh[temp]=mtemp;
+035: 	}
+036: 	FifteenPuzzleUtil.toOneTwo(sh, puzzle);
+037:  }
+038:  private int invertnumber(){
+039: 	int row=puzzle.length;
+040: 	int col=puzzle[0].length;
+041: 	int [] sh=new int[row*col];
+042: 	int location=0;
+043: 	FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+044: 	for (int i = 0; i < sh.length; i++) {
+045: 		if(sh[i]==0){location=i;break;}
+046: 	}
+047: 	int ivn=0;
+048: 	for (int i = 0; i < sh.length-1; i++) {
+049: 		for (int j = i+1; j < sh.length; j++) {
+050: 			if(i!=location && j!=location && sh[i]>sh[j] ){
+051: 				ivn++;
+052: 			}
+053: 		}
+054: 	}
+055: 	return ivn;
+056:  }//
+057:  private int zero(){
+058: 	int row=puzzle.length;
+059: 	int col=puzzle[0].length;
+060: 	int [] sh=new int[row*col];
+061: 	FifteenPuzzleUtil.toTwoOne(puzzle, sh);
+062: 	int znum=0;
+063: 	for (int i = 0; i < sh.length; i++) {
+064: 		if(sh[i]==0){
+065: 			znum=i/col;
+066: 			break;
+067: 		}
+068: 	}
+069: 	return znum;
+070:  }
+071:  public int evenpuzle(){
+072: 	int num=0;
+073: 	int invert=invertnumber();
+074: 	num+=invert;
+075: 	num+=puzzle.length;
+076: 	num+=zero();
+077: 	return num;
+078:  }
+079:  public void makePuzzle(boolean show){
+080: 	int num=0;
+081: 	do{
+082: 		shuffle();
+083: 		num=evenpuzle();
+084: 		if(show){
+085: 			if(puzzle.length%2==0 && num%2==1){ //홀수면 가능
+086: 				System.out.println("Even Possible Middle!");
+087: 				System.out.printf("Row  : %d \n", puzzle.length);
+088: 				System.out.printf("IVN  : %d \n", invertnumber());
+089: 				System.out.printf("Zero : %d \n", zero());
+090: 				System.out.printf("TOT  : %d \n", num);
+091: 				System.out.println("---------------------------");
+092: 			}else if(puzzle.length%2==0){
+093: 				System.out.println("Even Impossible Middle!");
+094: 				System.out.printf("Row  : %d \n", puzzle.length);
+095: 				System.out.printf("IVN  : %d \n", invertnumber());
+096: 				System.out.printf("Zero : %d \n", zero());
+097: 				System.out.printf("TOT  : %d \n", num);
+098: 				print();
+099: 				System.out.println("---------------------------");
+100: 			}
+101: 		}
+102: 	}while((puzzle.length+num)%2==0);
+103:  }
+104:  public void print(){
+105: 	int n=puzzle.length;
+106: 	for (int i = 0; i < n; i++) {
+107: 		for (int j = 0; j <n; j++) {
+108: 			System.out.printf("%2d\t",puzzle[i][j]);
+109: 		}
+110: 		System.out.println();
+111: 	}
+112: 	System.out.println();
+113:  }
+114:  // 테스트용 생성자
+115:  public FifteenPuzzle(int [][] pz) {
+116: 	this.n=pz.length;
+117: 	init(n);
+118: 	for (int i = 0; i < n; i++) {
+119: 		for (int j = 0; j <n; j++) {
+120: 			puzzle[i][j]=pz[i][j];
+121: 		}
+122: 	}
+123:  }
+124:  // 테스트 메서드
+125:  public void testPuzzles(){
+126: 	int num=evenpuzle();
+127: 	if(puzzle.length%2==0 && num%2==1){//홀수면 가능
+128: 		System.out.println("Even Possible Middle!");
+129: 		System.out.printf("Row  : %d \n", puzzle.length);
+130: 		System.out.printf("IVN  : %d \n", invertnumber());
+131: 		System.out.printf("Zero : %d \n", zero());
+132: 		System.out.printf("TOT  : %d \n", num);
+133: 		System.out.println("---------------------------");
+134: 	}else if(puzzle.length%2==0){
+135: 		System.out.println("Even Impossible Middle!");
+136: 		System.out.printf("Row  : %d \n", puzzle.length);
+137: 		System.out.printf("IVN  : %d \n", invertnumber());
+138: 		System.out.printf("Zero : %d \n", zero());
+139: 		System.out.printf("TOT  : %d \n", num);
+140: 		System.out.println("---------------------------");
+141: 	}
+142:  }
+143: }//

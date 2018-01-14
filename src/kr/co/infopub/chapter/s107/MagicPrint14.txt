@@ -1,0 +1,8 @@
+1: package kr.co.infopub.chapter.s107;
+2: 
+3: public class MagicPrint {
+4: 	public static void print(IMagicSquare magic){
+5: 		magic.make();
+6: 		magic.print();
+7: 	}
+8: }

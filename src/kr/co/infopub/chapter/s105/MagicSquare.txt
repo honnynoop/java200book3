@@ -1,0 +1,80 @@
+01: package kr.co.infopub.chapter.s105;
+02: public class MagicSquare {
+03: 	protected int [][] magic;     // 자식이 public처럼 사용
+04: 	protected int n;              // 자식이 public처럼 사용
+05: 	
+06: 	public int[][] getMagic() {
+07: 		return magic;
+08: 	}
+09: 	// 반듯이 int를 입력받아야하는 생성자
+10: 	public MagicSquare(int n) {
+11: 		magic=new int[n][n];
+12: 		this.n=n;
+13: 	}
+14:     // 기본 생성자 제거
+15: 	//public MagicSquare() {}
+16: 	
+17: 	public void make( ){ }  // make()구현했으나 내용없음
+18: 	
+19: 	public void print(){    // public 자식이 물려받음 
+20: 		System.out.println();
+21: 		System.out.println(n+" is magic : "+isMagic());
+22: 		for (int i = 0; i < n; i++) {
+23: 			for (int j = 0; j < n; j++) {
+24: 				System.out.print(magic[i][j]+"\t");
+25: 			}
+26: 			System.out.println();
+27: 		}
+28: 	}
+29: 	//마방진이 잘 되었는가를 판단
+30: 	protected  boolean isMagic( ){  // 자식이 public처럼 사용
+31: 		boolean isM=true;
+32: 		int[ ]m=new int[2*n+2];
+33: 		for (int i = 0; i < n; i++) {
+34: 			m[i]=sumRow(i);
+35: 			m[i+n]=sumCol(i);
+36: 		}
+37: 		m[2*n]=sumReverseDia();
+38: 		m[2*n+1]=sumDia();
+39: 		for (int i = 1; i < m.length; i++) {
+40: 			if(m[0]==0 || m[0]!=m[i]){
+41: 				isM=false;
+42: 				break;
+43: 			}
+44: 		}
+45: 		return isM;
+46: 	}
+47: 	//row 행의 열들의 합
+48: 	private int sumRow(int row){
+49: 		int tot=0;
+50: 		for (int i = 0; i < n; i++) {
+51: 			tot+=magic[row][i];
+52: 		}
+53: 		return tot;
+54: 	}
+55: 	
+56: 	//col 열의(열고정)  행들의 합
+57: 	private int sumCol(int col){
+58: 		int tot=0;
+59: 		for (int i = 0; i < n; i++) {
+60: 			tot+=magic[i][col];
+61: 		}
+62: 		return tot;
+63: 	}
+64: 	
+65: 	private int sumDia(){
+66: 		int tot=0;
+67: 		for (int i = 0; i < n ; i++) {
+68: 			tot+=magic[i][n-1-i];
+69: 		}
+70: 		return tot;
+71: 	}
+72: 	
+73: 	private int sumReverseDia(){
+74: 		int tot=0;
+75: 		for (int i = 0; i < n ; i++) {
+76: 			tot+=magic[i][i];
+77: 		}
+78: 		return tot;
+79: 	}
+80: }

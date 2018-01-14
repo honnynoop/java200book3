@@ -1,0 +1,20 @@
+01: package kr.co.infopub.chapter.s094;
+02: public class CardCaseMain {
+03: 	public static void main(String[] args) {
+04: 		CardCase cc=new CardCase();
+05: 		cc.make();
+06: 		cc.print();
+07: 		System.out.println("--------------------------");
+08: 		cc.shuffle();   // Ä«µå ¼¯±â
+09: 		cc.print();
+10: 		System.out.println("--------------------------");
+11: 		cc.shuffle();   // Ä«µå ¼¯±â
+12: 		cc.print();
+13: 		System.out.println("--------------------------");
+14: 		cc.sort();
+15: 		cc.print();
+16: 		System.out.println("--------------------------");
+17: 		cc.rsort();
+18: 		cc.print();
+19: 	}
+20: }

@@ -1,0 +1,80 @@
+01: package kr.co.infopub.chapter.s099;
+02: import java.util.*;
+03: public class BakaraMain {
+04:  public static void main(String[] args) {
+05: 	System.out.println("자산을 입력하시오");
+06: 	Scanner in = new Scanner(System.in);
+07: 	int sum = in.nextInt();
+08: 	int i = 0;
+09: 	Bakara bakara = new Bakara();
+10: 	while (true) {
+11: 		bakara.start();
+12: 		i++;
+13: 		System.out.println(i + "번째 대결입니다.");
+14: 		System.out.println("당신의 현재 자산은 총 " + sum + "원 입니다.");
+15: 		System.out.println("당신이 배팅할 금액을 설정하세요.");
+16: 	    
+17: 		int n = in.nextInt();
+18: 		if (n > sum) {
+19: 			System.out.println("자산을 넘어설 수 없습니다. 다시 입력하세요.");
+20: 			i--;
+21: 		}else {
+22: 			sum = sum - n;
+23: 			System.out.println("당신은 " + n + "만큼의 금액을 배팅했습니다.");
+24: 			System.out.println("당신의 자산은 " + sum + "입니다.");
+25: 			System.out.println("이 금액을 어디에 거시겠습니까");
+26: 			System.out.println("1 : Player"); 
+27: 			System.out.println("2 : Dealer");
+28: 			System.out.println("3 : Tie(무승부)");
+29: 			
+30: 			int nn = in.nextInt();//승부를 걸 쪽
+31: 			switch(nn) {
+32: 				case 1 : System.out.println("당신은 Player에 걸었습니다.");
+33: 					break;
+34: 				case 2 : System.out.println("당신은 Dealer에 걸었습니다.");
+35: 					break;
+36: 				case 3 : System.out.println("당신은 Tie에 걸었습니다.");
+37: 					break;
+38: 			}
+39: 			System.out.println();
+40: 			System.out.println("---------------------");
+41: 			System.out.println("----<Game Start!>----");
+42: 			System.out.println("---------------------");
+43: 					
+44: 			bakara.result();
+45: 			
+46: 			System.out.println("---------------------");
+47: 			System.out.println("-----<배팅 결과!>-----");
+48: 			System.out.println("---------------------");
+49: 			
+50: 			if (nn == bakara.getWhoWin()) {
+51: 				System.out.println("당신이 이겼습니다!");
+52: 				System.out.println("축하합니다!");
+53: 				sum = sum + (n * 2);
+54: 			}
+55: 			else if (nn == bakara.getWhoWin()) {
+56: 				System.out.println("당신이 이겼습니다!");
+57: 				System.out.println("축하합니다!");
+58: 				sum = sum + (n * 2);
+59: 			} 
+60: 			else if (nn == bakara.getWhoWin()) {
+61: 				System.out.println("당신이 이겼습니다!");
+62: 				System.out.println("축하합니다!");
+63: 				sum = sum + (n * 8);
+64: 			}
+65: 			else {
+66: 				System.out.println("안됐군요.. 유감입니다.");
+67: 			}
+68: 			
+69: 			System.out.println("당신의 남은 자산은 " + sum + "입니다!");
+70: 			System.out.println();
+71: 			System.out.println("---------------------");
+72: 			
+73: 			if (sum <= 0) {
+74: 				System.out.println("자산이 부족합니다. 수고하셨습니다!");
+75: 				break;
+76: 			}
+77: 		}
+78: 	}
+79:  }
+80: }

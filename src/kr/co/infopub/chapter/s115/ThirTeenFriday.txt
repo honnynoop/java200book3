@@ -1,0 +1,19 @@
+01: package kr.co.infopub.chapter.s115;
+02: import java.text.SimpleDateFormat;
+03: import java.util.Calendar;
+04: public class ThirTeenFriday {
+05:  public static void main(String[] args) {
+06: 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+07: 	Calendar cal=Calendar.getInstance();
+08: 	int currentyear=cal.get(Calendar.YEAR);    //현재 연도
+09: 	int count=0;
+10: 	for (int year = 2000; year <= currentyear; year++) {  //서기 2000년부터 현재까지
+11: 		for (int month= 0; month < 12; month++) {
+12: 			cal.set( year,month,13 );                           // 연도와 달 변경
+13: 			if(cal.get(Calendar.DAY_OF_WEEK)==Calendar.FRIDAY){ // 금요일
+14: 				System.out.println((++count)+"\t"+sdf.format(cal.getTime()));
+15: 			}
+16: 		}
+17: 	}
+18:  }
+19: }

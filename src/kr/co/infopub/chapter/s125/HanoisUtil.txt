@@ -1,0 +1,64 @@
+01: package kr.co.infopub.chapter.s125;
+02: public class HanoisUtil {
+03:  public  static void moveHanoi(int [][] a,int num, char ringA,char ringB,char ringC){
+04: 	if(num==1){
+05: 		showHanoi(a,ringA,ringB);
+06: 	}else {
+07: 		moveHanoi(a,num-1,ringA,ringC,ringB);
+08: 		showHanoi(a,ringA,ringB);
+09: 		moveHanoi(a,num-1,ringC,ringB,ringA);
+10: 	}
+11:  }
+12:  public static void  showHanoi(int [][] a, char ringA,char ringB){
+13: 	int aa=0;
+14: 	int ab=1;
+15: 	switch(ringA){
+16: 		case 'a': aa=0;break;
+17: 		case 'b': aa=1;break;
+18: 		case 'c': aa=2;break;
+19: 	}
+20: 	switch(ringB){
+21: 		case 'a': ab=0;break;
+22: 		case 'b': ab=1;break;
+23: 		case 'c': ab=2;break;
+24: 	}
+25: 	System.out.println(ringA+" bar쪽에 있던 링이 "+ringB+" bar쪽으로 이동");
+26: 	puts(a,aa,ab);
+27: 	showHanoi(a);
+28:  }
+29:  public static void  showHanoi(int [][] a){
+30: 	for(int i=0;i<a.length;i++){
+31: 		System.out.print("[\t");
+32: 		for(int j=0;j<a[0].length;j++){
+33: 			System.out.print(a[i][j]+"\t");
+34: 		}
+35: 		System.out.println("]");
+36: 	}
+37: 	System.out.println("=====================================");
+38:  }
+39:  public  static int   hasTray(int [][] a,int bar){
+40: 	int no=-1;
+41: 	for(int i=0;i<a.length;i++){
+42: 		if(a[i][bar]!=0){
+43: 			no=i;
+44: 			break;
+45: 		}
+46: 	}
+47: 	return no;
+48:  }
+49:  // change(a,2,2,0,0);==> 2,2의 값을 0,0으로 이동 , 2,2의 값을 0으로 
+50:  private  static void change(int [][] a,int aa,int ab,int ba,int bb){
+51: 	System.out.println("("+aa+","+ab+")==>"+"("+ba+","+bb+")  :");
+52: 	a[ba][bb]=a[aa][ab];
+53: 	a[aa][ab]=0;
+54:  }
+55:  public static void puts(int [][]a,int barA, int barB){
+56: 	if(hasTray(a,barA)!=-1){
+57: 		if(hasTray(a,barB)!=-1){
+58: 			change(a,hasTray(a,barA),barA,hasTray(a,barB)-1,barB);
+59: 		}else{
+60: 			change(a,hasTray(a,barA),barA,a.length-1,barB);
+61: 		}
+62: 	}
+63:  }
+64: }

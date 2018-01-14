@@ -1,0 +1,31 @@
+01: package kr.co.infopub.chapter.s110;
+02: public class AntQuiz {
+03: 	//s="112111"
+04: 	public  String   ant(String s){
+05: 		String t="";
+06: 		char c=s.charAt(0);//'1'
+07: 		int count=1;
+08: 		for (int i = 1; i < s.length() ; i++) {
+09: 			if( c==s.charAt(i) ){
+10: 				count++;
+11: 			}else {
+12: 				t=t+c+count;
+13: 				c=s.charAt(i);
+14: 				count=1;
+15: 			}
+16: 		}
+17: 		t=t+c+count;
+18: 		return t;
+19: 	}
+20: 	public void ant(int stage){
+21: 		String s="11";
+22: 		for (int i = 0; i <stage; i++) {
+23: 			System.out.println(s);
+24: 			s=ant(s);
+25: 		}
+26: 	}
+27: 	public static void main(String[] args) {
+28: 		AntQuiz quiz=new AntQuiz();
+29: 		quiz.ant(12);
+30: 	}
+31: }

@@ -1,0 +1,102 @@
+001: package kr.co.infopub.chapter.s102;
+002: public class OddMagicSquare {
+003: 	private int [][] magic; // 2차원 배열 선언
+004: 	private int n;          // 마방진 크기 n X n
+005: 
+006: 	public int[][] getMagic() {
+007: 		return magic;
+008: 	}
+009: 	public OddMagicSquare(int n) {
+010: 		magic=new int[n][n]; // 2차원 배열 생성, 초기화
+011: 		this.n=n;            // 마방진 크기 결정
+012: 	}
+013: 	public OddMagicSquare( ) {
+014: 		this(3);    // 생성자 오버로딩 - OddMagicSquare(int n)을 이용
+015: 	}
+016: 	public void make( ){   // 홀수 마방진 만들기
+017: 		int x=0;           // 가장 윗줄
+018: 		int y=n/2;         // 중앙
+019: 		for (int i = 1; i <= n*n ; i++) {
+020: 			int temX=x;    // 옮기기전 위치 저장
+021: 			int temY=y;    
+022: 			System.out.printf("(%d,%d)\t",x,y);
+023: 			magic[x][y]=i; // 1~nxn 대입
+024: 			// 위로 이동
+025: 			if( x-1<0 ){ // 윗벽
+026: 				x=n-1;
+027: 			}else{
+028: 				x--;     // 정상 x=x-1;
+029: 			}
+030: 			// 왼쪽으로 이동
+031: 			if( y-1<0 ){ // 왼쪽 벽
+032: 				y=n-1;
+033: 			}else{
+034: 				y--;     // 정상 y=y-1;
+035: 			}
+036: 			if(magic[x][y]!=0){ // 이미 존재
+037: 				x=temX+1;  // x원위치+1
+038: 				y=temY;    // y원위치
+039: 			}
+040: 		}//for
+041: 	}
+042: 	public void print(){
+043: 		System.out.println();
+044: 		System.out.println(n+" is magic : "+isMagic()); //마장진 완성?
+045: 		for (int i = 0; i < n; i++) {
+046: 			for (int j = 0; j < n; j++) {
+047: 				System.out.print(magic[i][j]+"\t");
+048: 			}
+049: 			System.out.println();
+050: 		}
+051: 	}
+052: 	//row 행에 대한 열들의 합
+053: 	private int sumRow(int row){
+054: 		int tot=0;
+055: 		for (int i = 0; i < n; i++) {
+056: 			tot+=magic[row][i];
+057: 		}
+058: 		return tot;
+059: 	}
+060: 	// col 열에 대한  행들의 합
+061: 	private int sumCol(int col){
+062: 		int tot=0;
+063: 		for (int i = 0; i < n; i++) {
+064: 			tot+=magic[i][col];
+065: 		}
+066: 		return tot;
+067: 	}
+068: 	// 역 대각선 (2,0)(1,1),(0,2)
+069: 	private int sumDia(){
+070: 		int tot=0;
+071: 		for (int i = 0; i < n ; i++) {
+072: 			tot+=magic[i][n-1-i];
+073: 		}
+074: 		return tot;
+075: 	}
+076: 	// 대각선 (0,0),(1,1),(2,2)
+077: 	private int sumReverseDia(){
+078: 		int tot=0;
+079: 		for (int i = 0; i < n ; i++) {
+080: 			tot+=magic[i][i];
+081: 		}
+082: 		return tot;
+083: 	}
+084: 	// 마방진이 잘 되었는가를 판단
+085: 	private  boolean isMagic( ){
+086: 		boolean isM=true;
+087: 		int[ ]m=new int[2*n+2];  // 행수n+열수n+대각선1+역대각선1
+088: 		for (int i = 0; i < n; i++) {
+089: 			m[i]=sumRow(i);      // 0,1,2 행의 합
+090: 			m[i+n]=sumCol(i);    // 3,4,5 열의 합
+091: 		}
+092: 		m[2*n]=sumReverseDia();  // 역대각선의합
+093: 		m[2*n+1]=sumDia();       // 대각선의 합
+094: 		for (int i = 1; i < m.length; i++) {
+095: 			if(m[0]==0 || m[0]!=m[i]){ // 하나라도 다르면 마방진이 아님
+096: 				isM=false;
+097: 				break;
+098: 			}
+099: 		}
+100: 		return isM;
+101: 	}
+102: }//class 

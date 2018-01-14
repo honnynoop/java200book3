@@ -1,0 +1,82 @@
+01: package kr.co.infopub.chapter.s106;
+02: public abstract class MagicSquare implements IMagicSquare{
+03: 	protected int [][] magic;     // 자식이 public처럼 사용
+04: 	protected int n;              // 자식이 public처럼 사용
+05: 	
+06: 	public int[][] getMagic() {
+07: 		return magic;
+08: 	}
+09: 	// 반듯이 int를 입력받아야하는 생성자
+10: 	public MagicSquare(int n) {
+11: 		magic=new int[n][n];
+12: 		this.n=n;
+13: 	}
+14:     // 기본 생성자 제거
+15: 	//public MagicSquare() {}
+16: 	// 아래는 abstract가 되는 예 3가지
+17: 	//                             // 인터페이스 구현안함
+18: 	//public void make( ){ }       // 상속 강요
+19: 	//public abstract void make(); // 구현 안했다.
+20: 	
+21: 	public void print(){
+22: 		System.out.println();
+23: 		System.out.println(n+" is magic : "+isMagic());
+24: 		for (int i = 0; i < n; i++) {
+25: 			for (int j = 0; j < n; j++) {
+26: 				System.out.print(magic[i][j]+"\t");
+27: 			}
+28: 			System.out.println();
+29: 		}
+30: 	}
+31: 	//마방진이 잘 되었는가를 판단
+32: 	private  boolean isMagic( ){  // 자식이 public처럼 사용
+33: 		boolean isM=true;
+34: 		int[ ]m=new int[2*n+2];
+35: 		for (int i = 0; i < n; i++) {
+36: 			m[i]=sumRow(i);
+37: 			m[i+n]=sumCol(i);
+38: 		}
+39: 		m[2*n]=sumReverseDia();
+40: 		m[2*n+1]=sumDia();
+41: 		for (int i = 1; i < m.length; i++) {
+42: 			if(m[0]==0 || m[0]!=m[i]){
+43: 				isM=false;
+44: 				break;
+45: 			}
+46: 		}
+47: 		return isM;
+48: 	}
+49: 	//row 행의 열들의 합
+50: 	private int sumRow(int row){
+51: 		int tot=0;
+52: 		for (int i = 0; i < n; i++) {
+53: 			tot+=magic[row][i];
+54: 		}
+55: 		return tot;
+56: 	}
+57: 	
+58: 	//col 열의(열고정)  행들의 합
+59: 	private int sumCol(int col){
+60: 		int tot=0;
+61: 		for (int i = 0; i < n; i++) {
+62: 			tot+=magic[i][col];
+63: 		}
+64: 		return tot;
+65: 	}
+66: 	
+67: 	private int sumDia(){
+68: 		int tot=0;
+69: 		for (int i = 0; i < n ; i++) {
+70: 			tot+=magic[i][n-1-i];
+71: 		}
+72: 		return tot;
+73: 	}
+74: 	
+75: 	private int sumReverseDia(){
+76: 		int tot=0;
+77: 		for (int i = 0; i < n ; i++) {
+78: 			tot+=magic[i][i];
+79: 		}
+80: 		return tot;
+81: 	}
+82: }

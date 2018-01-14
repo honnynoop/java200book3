@@ -1,0 +1,135 @@
+001: <?xml version="1.0" encoding="UTF-8"?>
+002: <class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+003:   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+004:   <interface id="1" language="java" name="kr.co.infopub.chapter.s102.IMagicSquare" project="java200new" 
+005:     file="/java200new/src/kr/co/infopub/chapter/s102/IMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+006:     <position height="-1" width="-1" x="383" y="70"/>    
+007:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+008:       sort-features="false" accessors="true" visibility="true">      
+009:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+010:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+011:     </display>  
+012:   </interface>  
+013:   <class id="2" language="java" name="kr.co.infopub.chapter.s102.OddMagicSquare" project="java200new" 
+014:     file="/java200new/src/kr/co/infopub/chapter/s102/OddMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+015:     <position height="-1" width="-1" x="110" y="588"/>    
+016:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+017:       sort-features="false" accessors="true" visibility="true">      
+018:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+019:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+020:     </display>  
+021:   </class>  
+022:   <class id="3" language="java" name="kr.co.infopub.chapter.s102.MagicSquare" project="java200new" 
+023:     file="/java200new/src/kr/co/infopub/chapter/s102/MagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+024:     <position height="-1" width="-1" x="380" y="310"/>    
+025:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+026:       sort-features="false" accessors="true" visibility="true">      
+027:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+028:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+029:     </display>  
+030:   </class>  
+031:   <class id="4" language="java" name="kr.co.infopub.chapter.s102.FourMagicSquare" project="java200new" 
+032:     file="/java200new/src/kr/co/infopub/chapter/s102/FourMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+033:     <position height="-1" width="-1" x="383" y="575"/>    
+034:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+035:       sort-features="false" accessors="true" visibility="true">      
+036:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+037:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+038:     </display>  
+039:   </class>  
+040:   <class id="5" language="java" name="kr.co.infopub.chapter.s102.SixMagicSquare" project="java200new" 
+041:     file="/java200new/src/kr/co/infopub/chapter/s102/SixMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+042:     <position height="-1" width="-1" x="701" y="542"/>    
+043:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+044:       sort-features="false" accessors="true" visibility="true">      
+045:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+046:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+047:     </display>  
+048:   </class>  
+049:   <class id="6" language="java" name="kr.co.infopub.chapter.s102.FactoryMagic" project="java200new" 
+050:     file="/java200new/src/kr/co/infopub/chapter/s102/FactoryMagic.java" binary="false" corner="BOTTOM_RIGHT">    
+051:     <position height="-1" width="-1" x="698" y="286"/>    
+052:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+053:       sort-features="false" accessors="true" visibility="true">      
+054:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+055:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+056:     </display>  
+057:   </class>  
+058:   <class id="7" language="java" name="kr.co.infopub.chapter.s102.MagicException" project="java200new" 
+059:     file="/java200new/src/kr/co/infopub/chapter/s102/MagicException.java" binary="false" corner="BOTTOM_RIGHT">    
+060:     <position height="-1" width="-1" x="699" y="90"/>    
+061:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+062:       sort-features="false" accessors="true" visibility="true">      
+063:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+064:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+065:     </display>  
+066:   </class>  
+067:   <class id="8" language="java" name="kr.co.infopub.chapter.s102.MagicPrint" project="java200new" 
+068:     file="/java200new/src/kr/co/infopub/chapter/s102/MagicPrint.java" binary="false" corner="BOTTOM_RIGHT">    
+069:     <position height="-1" width="-1" x="122" y="73"/>    
+070:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+071:       sort-features="false" accessors="true" visibility="true">      
+072:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+073:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+074:     </display>  
+075:   </class>  
+076:   <realization id="9">    
+077:     <end type="SOURCE" refId="3"/>    
+078:     <end type="TARGET" refId="1"/>  
+079:   </realization>  
+080:   <generalization id="10">    
+081:     <end type="SOURCE" refId="4"/>    
+082:     <end type="TARGET" refId="3"/>  
+083:   </generalization>  
+084:   <dependency id="11">    
+085:     <end type="SOURCE" refId="8"/>    
+086:     <end type="TARGET" refId="1"/>  
+087:   </dependency>  
+088:   <association id="12">    
+089:     <end type="SOURCE" refId="6" navigable="false">      
+090:       <attribute id="13" name="ins"/>      
+091:       <multiplicity id="14" minimum="0" maximum="1"/>    
+092:     </end>    
+093:     <end type="TARGET" refId="6" navigable="true"/>    
+094:     <display labels="true" multiplicity="true"/>  
+095:   </association>  
+096:   <dependency id="15">    
+097:     <end type="SOURCE" refId="6"/>    
+098:     <end type="TARGET" refId="1"/>  
+099:   </dependency>  
+100:   <dependency id="16">    
+101:     <end type="SOURCE" refId="6"/>    
+102:     <end type="TARGET" refId="4"/>  
+103:   </dependency>  
+104:   <generalization id="17">    
+105:     <end type="SOURCE" refId="2"/>    
+106:     <end type="TARGET" refId="3"/>  
+107:   </generalization>  
+108:   <dependency id="18">    
+109:     <bendpoint x="379" y="719"/>    
+110:     <end type="SOURCE" refId="5"/>    
+111:     <end type="TARGET" refId="2"/>  
+112:   </dependency>  
+113:   <dependency id="19">    
+114:     <end type="SOURCE" refId="6"/>    
+115:     <end type="TARGET" refId="5"/>  
+116:   </dependency>  
+117:   <dependency id="20">    
+118:     <end type="SOURCE" refId="6"/>    
+119:     <end type="TARGET" refId="2"/>  
+120:   </dependency>  
+121:   <dependency id="21">    
+122:     <end type="SOURCE" refId="6"/>    
+123:     <end type="TARGET" refId="7"/>  
+124:   </dependency>  
+125:   <generalization id="22">    
+126:     <end type="SOURCE" refId="5"/>    
+127:     <end type="TARGET" refId="3"/>  
+128:   </generalization>  
+129:   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+130:     sort-features="false" accessors="true" visibility="true">    
+131:     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+132:     <operations public="true" package="true" protected="true" private="true" static="true"/>  
+133:   </classifier-display>  
+134:   <association-display labels="true" multiplicity="true"/>
+135: </class-diagram>

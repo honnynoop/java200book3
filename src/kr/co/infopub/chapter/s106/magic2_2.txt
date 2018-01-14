@@ -1,0 +1,89 @@
+01: <?xml version="1.0" encoding="UTF-8"?>
+02: <class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+03:   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+04:   <interface id="1" language="java" name="kr.co.infopub.chapter.s106.IMagicSquare" project="java200book3" 
+05:     file="/java200book3/src/kr/co/infopub/chapter/s106/IMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+06:     <position height="-1" width="-1" x="427" y="87"/>    
+07:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+08:       sort-features="false" accessors="true" visibility="true">      
+09:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+10:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+11:     </display>  
+12:   </interface>  
+13:   <class id="2" language="java" name="kr.co.infopub.chapter.s106.MagicSquare" project="java200book3" 
+14:     file="/java200book3/src/kr/co/infopub/chapter/s106/MagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+15:     <position height="-1" width="-1" x="427" y="330"/>    
+16:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+17:       sort-features="false" accessors="true" visibility="true">      
+18:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+19:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+20:     </display>  
+21:   </class>  
+22:   <class id="3" language="java" name="kr.co.infopub.chapter.s106.OddMagicSquare" project="java200book3" 
+23:     file="/java200book3/src/kr/co/infopub/chapter/s106/OddMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+24:     <position height="-1" width="-1" x="218" y="585"/>    
+25:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+26:       sort-features="false" accessors="true" visibility="true">      
+27:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+28:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+29:     </display>  
+30:   </class>  
+31:   <class id="4" language="java" name="kr.co.infopub.chapter.s106.FourMagicSquare" project="java200book3" 
+32:     file="/java200book3/src/kr/co/infopub/chapter/s106/FourMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+33:     <position height="-1" width="-1" x="428" y="600"/>    
+34:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+35:       sort-features="false" accessors="true" visibility="true">      
+36:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+37:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+38:     </display>  
+39:   </class>  
+40:   <class id="5" language="java" name="kr.co.infopub.chapter.s106.SixMagicSquare" project="java200book3" 
+41:     file="/java200book3/src/kr/co/infopub/chapter/s106/SixMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+42:     <position height="214" width="153" x="620" y="468"/>    
+43:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+44:       sort-features="false" accessors="true" visibility="true">      
+45:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+46:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+47:     </display>  
+48:   </class>  
+49:   <class id="6" language="java" name="kr.co.infopub.chapter.s106.MagicPrint" project="java200book3" 
+50:     file="/java200book3/src/kr/co/infopub/chapter/s106/MagicPrint.java" binary="false" corner="BOTTOM_RIGHT">    
+51:     <position height="-1" width="-1" x="692" y="91"/>    
+52:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+53:       sort-features="false" accessors="true" visibility="true">      
+54:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+55:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+56:     </display>  
+57:   </class>  
+58:   <dependency id="7">    
+59:     <bendpoint x="407" y="744"/>    
+60:     <end type="SOURCE" refId="5"/>    
+61:     <end type="TARGET" refId="3"/>  
+62:   </dependency>  
+63:   <generalization id="8">    
+64:     <end type="SOURCE" refId="5"/>    
+65:     <end type="TARGET" refId="2"/>  
+66:   </generalization>  
+67:   <dependency id="9">    
+68:     <end type="SOURCE" refId="6"/>    
+69:     <end type="TARGET" refId="1"/>  
+70:   </dependency>  
+71:   <generalization id="10">    
+72:     <end type="SOURCE" refId="4"/>    
+73:     <end type="TARGET" refId="2"/>  
+74:   </generalization>  
+75:   <realization id="11">    
+76:     <end type="SOURCE" refId="2"/>    
+77:     <end type="TARGET" refId="1"/>  
+78:   </realization>  
+79:   <generalization id="12">    
+80:     <end type="SOURCE" refId="3"/>    
+81:     <end type="TARGET" refId="2"/>  
+82:   </generalization>  
+83:   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+84:     sort-features="false" accessors="true" visibility="true">    
+85:     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+86:     <operations public="true" package="true" protected="true" private="true" static="true"/>  
+87:   </classifier-display>  
+88:   <association-display labels="true" multiplicity="true"/>
+89: </class-diagram>

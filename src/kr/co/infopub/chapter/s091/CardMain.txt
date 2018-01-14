@@ -1,0 +1,22 @@
+01: package kr.co.infopub.chapter.s091;
+02: public class CardMain {
+03: 	public static void main(String[] args) {
+04: 		Card c1=new Card("H4");               // 생성자 (String 아규먼트)
+05: 		Card c2=new Card("H4");               // 생성자 (String 아규먼트)
+06: 		Card c3=new Card(c1);                 // 복사 생성자- 값동일
+07:         System.out.println(c1.hashCode());    // 값은 동일 다른 해쉬
+08:         System.out.println(c2.hashCode());    // 값은 동일 다른 해쉬
+09:         System.out.println(c1.getCardVal());  // 값은 동일
+10:         System.out.println(c2.getCardVal());  // 값은 동일
+11:         System.out.println(c1.equals(c2));    // hashCode 비교- 중요-false
+12:         System.out.println(c1.equals(c3));    // hashCode 비교- 중요 -false
+13:         for(int i=0; i<CardUtil.SUIT.length ; i++){         // SUIT 2
+14:         	for (int j = 0; j <CardUtil.VALU.length; j++) { // VALU 10
+15:         		// 값은 같을 수 있지만 해쉬코드는 고유(같을 수 없다)하다.
+16:         		Card c=new Card();             // 임의로 카드 생성- 기본 생성자()
+17: 				System.out.printf("%s\t",c);   // c.toString()
+18: 			}
+19:         	System.out.println( );// 10개 출력후 한칸 아래
+20:         }
+21: 	}
+22: }

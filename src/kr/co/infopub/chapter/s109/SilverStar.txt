@@ -1,0 +1,58 @@
+01: package kr.co.infopub.chapter.s114;
+02: public class SilverStar {
+03:  public static void  stepDia(int n){
+04: 	for (int i = 0; i < n ; i++) {
+05: 		for (int j = 0; j <Math.abs(i-n/2)  ; j++) {
+06: 			System.out.printf("   ");
+07: 		}
+08: 		for (int k= 0; k <n-2*Math.abs(i-n/2) ; k++) {
+09: 			System.out.printf("¨Í");
+10: 		}
+11: 		System.out.println();
+12: 	}
+13:  }
+14:  public static void main(String[] args) {
+15: 	 SilverStar.stepDia(15);
+16:  }
+17:  public static void  stepDown(int n){
+18: 	for (int i = 0; i < n; i++) {
+19: 		for (int j = 0; j < i+1 ; j++) {
+20: 			System.out.printf("*");
+21: 		}
+22: 		System.out.println();
+23: 	}
+24:  }//
+25:  public static void  stepUp(int n){
+26: 	for (int i = 0; i < n; i++) {
+27: 		for (int j = 0; j <n-1-i  ; j++) {
+28: 			System.out.printf("   ");
+29: 		}
+30: 		for (int k= 0; k <i+1; k++) {
+31: 			System.out.printf("¨Í");
+32: 		}
+33: 		System.out.println();
+34: 	}
+35:  }//
+36:  public static void  stepTri(int n){
+37: 	for (int i = 0; i < n; i++) {
+38: 		for (int j = 0; j <n-1-i  ; j++) {
+39: 			System.out.printf("   ");
+40: 		}
+41: 		for (int k= 0; k <2*i+1; k++) {
+42: 			System.out.printf("¨Í");
+43: 		}
+44: 		System.out.println();
+45: 	}
+46:   }
+47:   public static void  stepRevTri(int n){
+48: 	for (int i = 0; i < n; i++) {
+49: 		for (int j = 0; j <i  ; j++) {
+50: 			System.out.printf("   ");
+51: 		}
+52: 		for (int k= 0; k <2*n-1-2*i ; k++) {
+53: 			System.out.printf("¨Í");
+54: 		}
+55: 		System.out.println();
+56: 	}
+57:  }
+58: }

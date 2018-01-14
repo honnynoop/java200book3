@@ -1,0 +1,12 @@
+01: package kr.co.infopub.chapter.s120;
+02: // 1~1000 사이의 서로 다른 100개
+03: public class Lotto6NumMain2 {
+04: 
+05: 	public static void main(String[] args) {
+06: 		Lotto6Num lot=new Lotto6Num(1000,100);
+07: 		lot.randomMake();
+08: 		lot.print();
+09: 
+10: 	}
+11: 
+12: }

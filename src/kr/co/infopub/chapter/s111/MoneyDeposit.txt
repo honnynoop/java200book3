@@ -1,0 +1,18 @@
+01: package kr.co.infopub.chapter.s109;
+02: public class MoneyDeposit {
+03: 	//적금
+04: 	public static double saveUs(int money, int month, double ratio){
+05: 		double tot=0.0;
+06: 		double r=ratio/100/12;
+07: 		double a=money;
+08: 		for (int i = 0; i < month; i++) {
+09: 			a=a*(1+r);
+10: 			tot+=a;
+11: 		}
+12: 		return tot;
+13: 	}
+14: 	public static void main(String[] args) {
+15: 		double tot=MoneyDeposit.saveUs(800000, 36 , 1.5);
+16: 		System.out.printf("적금 :%.0f \n",tot);
+17: 	}
+18: }

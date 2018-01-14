@@ -1,0 +1,44 @@
+01: package kr.co.infopub.chapter.s093;
+02: public class Card {
+03: 	private String cardVal; //H8
+04: 	public String getCardVal() {
+05: 		return cardVal;
+06: 	}
+07: 	public Card() {
+08: 		int deck=(int)(Math.random()*CardUtil.SUIT.length); // 0~3
+09: 		int suit=(int)(Math.random()*CardUtil.VALU.length); // 0~12
+10: 		//임의의 카드 값을 갖는다. H6
+11: 		cardVal=CardUtil.SUIT[deck]+CardUtil.VALU[suit];
+12: 	}
+13: 	// 테스트용
+14: 	public Card(String s) {
+15: 		this.cardVal=s;  // 문자열은 값복사
+16: 	}
+17: 	// 복사 생성자
+18: 	public Card(Card c) {
+19: 		this(c.getCardVal());  // 문자열은 값복사
+20: 		// this.cardVal=c.getCardVal(); //동일
+21: 	}
+22: 	@Override
+23: 	public String toString() {
+24: 		return "[" + cardVal + "]";
+25: 	}
+26:     // Eclipse-Source-Generate hashCode() and equals()를 이용하여 자동으로 만들자
+27: 	@Override
+28: 	public int hashCode() {
+29: 		final int prime = 31;
+30: 		int result = 1;
+31: 		result = prime * result + ((cardVal == null) ? 0 : cardVal.hashCode());
+32: 		return result;
+33: 	}
+34:     // 소스를 정리하면  카드값과 카드값을 일대일로 비교한다.
+35: 	@Override
+36: 	public boolean equals(Object obj) {
+37: 		Card cb=(Card)obj; 
+38: 		if(cardVal.equals(cb.getCardVal())){
+39: 			return true;
+40: 		}else{
+41: 			return false;
+42: 		}
+43: 	}
+44: }//

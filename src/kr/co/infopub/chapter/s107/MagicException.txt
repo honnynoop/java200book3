@@ -1,0 +1,15 @@
+01: package kr.co.infopub.chapter.s107;
+02: public class MagicException extends Exception{
+03: 	public MagicException() {
+04: 		this("이런마 방진 생성불가");
+05: 	}
+06: 	public MagicException(String message, Throwable cause) {
+07: 		super(message, cause);
+08: 	}
+09: 	public MagicException(String message) {
+10: 		super(message+"형태의 마방진 생성 불가");
+11: 	}
+12: 	public MagicException(Throwable cause) {
+13: 		super(cause);
+14: 	}
+15: }

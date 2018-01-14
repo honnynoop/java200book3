@@ -1,0 +1,107 @@
+001: package kr.co.infopub.chapter.s119;
+002: import java.io.File;
+003: import java.io.FileInputStream;
+004: import java.io.FileOutputStream;
+005: import java.io.IOException;
+006: import java.io.InputStream;
+007: import java.io.OutputStream;
+008: import java.nio.channels.FileChannel;
+009: import java.nio.file.Files;
+010: import java.util.Date;
+011: public class FileUploadUtil2 {
+012: 	//f=abc.zip => f.indexOf('.') 3
+013: 	//f.substring(3) .zip
+014: 	//f.substring(0,3) abc
+015: 	public static String getNewFile(String f){
+016: 		String filename="";
+017: 		String fpost="";
+018: 		//String fre="";
+019: 		if(f.indexOf('.')>=0){
+020: 			fpost=f.substring(f.indexOf('.'));
+021: 			//fre=f.substring(0,f.indexOf('.'));
+022: 			filename=new Date().getTime()+fpost;
+023: 		}else{
+024: 			filename=new Date().getTime()+".back";
+025: 		}
+026: 		return filename;
+027: 	} 
+028: 	public static String getNewFile2(String f){
+029: 		String filename="";
+030: 		String fpost="";
+031: 		String fre="";
+032: 		if(f.indexOf('.')>=0){
+033: 			fpost=f.substring(f.indexOf('.'));
+034: 			fre=f.substring(0,f.indexOf('.'));
+035: 			filename=fre+new Date().getTime()+fpost;
+036: 		}else{
+037: 			filename=f+new Date().getTime()+".back";
+038: 		}
+039: 		return filename;
+040: 	} 
+041: 	public static String getNewjpg(String f){
+042: 		String filename="";
+043: 		String fpost="";
+044: 		String fre="";
+045: 		if(f.indexOf('.')>=0){
+046: 			fpost=f.substring(f.indexOf('.'));
+047: 			fre=f.substring(0,f.indexOf('.'));
+048: 			filename=fre+fpost;
+049: 		}else{
+050: 			filename=f+".jpg";
+051: 		}
+052: 		return filename;
+053: 	} 
+054: 	private static void copyUsingFileStreams(File source, File target){
+055: 		InputStream input = null;
+056: 		OutputStream output = null;
+057: 		try {
+058: 			input = new FileInputStream(source);
+059: 			output = new FileOutputStream(target);
+060: 			byte[] buf = new byte[1024];
+061: 			int bytesRead;
+062: 			while ((bytesRead = input.read(buf)) > 0) {
+063: 				output.write(buf, 0, bytesRead);
+064: 			}
+065: 		}catch(IOException e){	
+066: 			System.out.println( e);
+067: 		}catch(Exception e){
+068: 			System.out.println( e);
+069: 		}
+070: 		finally {
+071: 			try {
+072: 				input.close();
+073: 				output.close();
+074: 			} catch (IOException e) {
+075: 			}
+076: 		}
+077: 	}
+078: 
+079: 	public static void copyUsingFileChannels(File source, File target) {
+080: 		FileChannel input = null;
+081: 		FileChannel output = null;
+082: 		try {
+083: 			input = new FileInputStream(source).getChannel();
+084: 			output = new FileOutputStream(target).getChannel();
+085: 			output.transferFrom(input, 0, input.size());
+086: 		}catch(IOException e){	
+087: 			System.out.println( e);
+088: 		}catch(Exception e){
+089: 			System.out.println( e);
+090: 		} 
+091: 		finally {
+092: 			try {
+093: 				input.close();
+094: 				output.close();
+095: 			} catch (IOException e) {
+096: 			}
+097: 		}
+098: 	}
+099: 
+100: 	public static void copyUsingFiles(File source, File target) {
+101: 		try {
+102: 			Files.copy(source.toPath(), target.toPath());
+103: 		} catch (IOException e) {
+104: 			System.out.println(e);
+105: 		}
+106: 	}
+107: }

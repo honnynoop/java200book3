@@ -1,0 +1,9 @@
+1: package kr.co.infopub.chapter.s127;
+2: public class TNailMain {
+3: 	public static void main(String[] args) {
+4: 		//시계 반대방향
+5: 		TNail tnail=new TNail(7, 7);
+6: 		tnail.make();
+7: 		tnail.print();
+8: 	}
+9: }

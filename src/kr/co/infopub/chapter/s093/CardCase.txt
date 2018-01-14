@@ -1,0 +1,53 @@
+01: package kr.co.infopub.chapter.s093;
+02: import java.util.ArrayList;
+03: import java.util.Collections;
+04: import java.util.List;
+05: public class CardCase {
+06: 	// aggregation : CardCase는 Card로 구성된다.
+07: 	private List<Card> cards=new ArrayList<Card>();
+08: 	public CardCase() {
+09: 		cards.clear(); // 내용 지우기
+10: 	}
+11: 	// List 반환
+12: 	public List<Card> getCards() {
+13: 		return cards;
+14: 	}
+15: 	// List에 저장된 Card의 개수
+16: 	public int count(){
+17: 		return cards.size(); // 저장된 Card 개수
+18: 	}
+19: 	// List의 index번째 Card
+20: 	public Card getCard(int index){
+21: 		return cards.get(index);  // index번째 Card
+22: 	}
+23: 	// 서로 다른 카드 20장 만들기
+24: 	public void make(){
+25: 		cards.clear(); // 내용 지우기
+26: 		int suit=CardUtil.SUIT.length; // 0~3
+27: 		int valu=CardUtil.VALU.length; // 0~12
+28: 		int count=0;
+29: 		//서로 다른 20개의 카드를 만든다.
+30: 		while(count!=valu*suit){    // 20장이 될때까지
+31: 			Card c=new Card();      // 임의의 카드를 만든다
+32: 			if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+33: 				cards.add(c);       // 같은 객체가 아니라면 저장
+34: 				count++;
+35: 			}
+36: 		}
+37: 	}
+38: 	
+39: 	public void shuffle(){
+40: 		Collections.shuffle(cards); // 카드 섞기
+41: 	}
+42: 
+43: 	public void print(){
+44: 		int valu=CardUtil.VALU.length;
+45: 		for (int i = 0; i < cards.size(); i++) {
+46: 			Card c=cards.get(i);
+47: 			System.out.printf("%s ",c.toString());
+48: 			if((i+1)%valu==0){
+49: 				System.out.println();
+50: 			}
+51: 		}
+52: 	}
+53: }//

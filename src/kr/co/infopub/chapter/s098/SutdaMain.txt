@@ -1,0 +1,7 @@
+1: package kr.co.infopub.chapter.s098;
+2: public class SutdaMain {
+3: 	public static void main(String[] args) {
+4: 		Sutda sutda=new Sutda();
+5: 		sutda.play();
+6: 	}
+7: }

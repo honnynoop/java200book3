@@ -1,0 +1,162 @@
+001: package kr.co.infopub.chapter.s121;
+002: 
+003: public class JSort2 {
+004: 	
+005: 	/**
+006: 	 * 
+007: 	 * <pre>
+008: 	 * BubbleSort : 바로앞의 배열값과 자신의 배열값을 비교하여 자신이 더 작은 수인경우 자리를 바꾸어준다. 
+009: 	 * 					그리하여 배열길이만큼 1회전하면 제일 마지막 배열값은 제일 큰수가 된다. 
+010: 	 * 					그다음 제일 큰수가 된 마지막 배열자리만 제외하고 다시 자리를 바꾸어 주는 작업을 해준다.
+011: 	 * 					배열길이만큼 회전하면 정렬이 완료된다. </pre>
+012: 	 */
+013: 	public static void BubbleSort(int[] n){
+014: 		for(int i=0; i<n.length-1; i++){
+015: 			for(int j=0; j<n.length-1-i; j++){
+016: 				if(n[j]>n[j+1]){
+017: 					int temp=n[j];
+018: 					n[j]=n[j+1];
+019: 					n[j+1]=temp;
+020: 				}
+021: 			}
+022: 		}
+023: 	}//버블정렬
+024: 	/** 
+025: 	 * <pre>
+026: 	 * InsertSort : 정렬이 정상적으로 되어있는지 확인해보다가 증가순 정렬에 위배되는경우 
+027: 	 * 				  다른곳에 임시 저장한다. 그리고 그 위배되던 자리가 비면, 위배되는 자리의 앞수들을 한칸씩
+028: 	 * 				  뒤로 이동하여 빈 공간을 없앤다. 그렇게 제일 앞자리 자리가 비면 임시저장해두었던 수를 대입한다.
+029: 	 * 				  이런 방법으로 반복하면 정렬이 된다.</pre>
+030: 	 */
+031: 	public static void InsertSort(int[] n){	
+032: 		for (int i = 0; i < n.length; i++) {
+033: 			int temp=n[i];
+034: 			int j=i-1;
+035: 			while(j>=0 && n[j]> temp){					//왼쪽 수가 더 클 동안 앞의 값을 바로 뒤의 위치에 넣어준다.
+036: 				n[j+1]=n[j];
+037: 				j--;
+038: 			}
+039: 			n[j+1]=temp;
+040: 		}
+041: 	
+042: 	}//삽입정렬
+043: 	
+044: 	
+045: 	
+046: 	/**
+047: 	 * <pre>
+048: 	 * SelectSort : 배열의 길이만큼 회전하면서 제일 작은값을 유출해내고 그 값을 제일 앞자리의 값과 교체해준다.
+049: 	 * 				   다시 나머지 중에서 최소값을 구해내어 나머지의 왼쪽으로 보낸다. 
+050: 	 * </pre>
+051: 	 */
+052: 	public static void SelectSort(int n[]){
+053: 		
+054: 		
+055: 		for (int i = 0; i < n.length; i++) {
+056: 			int k = i;
+057: 			for(int j = i+1;j<n.length;j++){
+058: 				 if(n[j] < n[k]){
+059: 					 k = j;
+060: 				 }
+061: 				 
+062: 			}
+063: 			int temp=n[i];
+064: 			n[i]=n[k];
+065: 			n[k]=temp;	
+066: 			
+067: 		}	
+068: 		
+069: 	}
+070: 	//셀렉 정렬 끝
+071: 	
+072: 	/**
+073: 	 * <pre>
+074: 	 * QuickSort : 배열의 길이의 중간부분을 pivot으로 설정하고 기준보다 작으면 왼쪽으로, 크면 오른쪽으로 옮긴다.
+075: 	 * 				  이 작업이 완료되면 또 그 나뉜 부분의 중간부분을 기준으로 정하고 
+076: 	 * 				  작으면 왼쪽으로 , 크면 오른쪽으로 옮기는 작업을 반복한다.
+077: 	 * </pre>
+078: 	 */
+079: 
+080: 	
+081: 		public static void QuickSort(int[] nn, int start, int end){
+082: 			int left =start; 
+083: 			int right=end;
+084: 			int mid=nn[(start+end)/2];
+085: 			do{
+086: 					//A
+087: 				while((nn[left]<mid) && (left < end)){
+088: 					left++;
+089: 					
+090: 				}
+091: 				while((mid<nn[right]) && (right>start)){
+092: 					right--;
+093: 				}
+094: 					//B
+095: 				if(left<=right){
+096: 					
+097: 					int temp=nn[left];			
+098: 					nn[left]=nn[right];
+099: 					nn[right]=temp;
+100: 					left++;
+101: 					right--;
+102: 				}
+103: 			}while(left<right);
+104: 			//C
+105: 			if(start<right){
+106: 				QuickSort(nn,start,right);
+107: 			}
+108: 			//D
+109: 			if(left<end){
+110: 				QuickSort(nn,left,end);
+111: 			}
+112: 		}
+113: 		/**
+114: 		 * 처음 QuickSort를 입력받아서 배열의 길이값까지 매개변수로 넘겨주는 작업을 실행한다.  
+115: 		 */
+116: 		public static void QuickSort(int[] n){
+117: 			QuickSort(n,0,n.length-1);
+118: 		}
+119: 			
+120: 	
+121: 		
+122: 	
+123: 	/**
+124: 	 * <pre>
+125: 	 * 버블 정렬
+126: 	 * static 메소드로 객체생성없이 ClassName.MethodName으로 사용할 수 있다. </br>
+127: 	 * 변수 count에 배열길이 -1 를 대입 (인덱스 번호는 0부터 시작하기 때문에.) 
+128: 	 * 중복 for문을 이용해 outer for문은 0~ 배열끝까지 정렬이 될때까지 반복되게 한다.
+129: 	 * Inner For문은 0~배열끝 - 1 -i 까지 반복하여 가장 큰 값을 가장 오른쪽으로 이동시키고, 그다음 결과는 
+130: 	 * 가장 오른쪽 - 1 에 위치시키기 위함이다.
+131: 	 * if 문으로 조건을 주어 (첫번째 숫자와 두번째 숫자를 비교) 큰값을 빈 공간에 잠시넣고, 작은값을 왼쪽으로
+132: 	 * 큰값을 오른쪽으로 이동시키는 swap 과정의 반복이 일어나게 된다.
+133: 	 *   </pre>
+134: 	 * @param n  = 정렬하고 싶을 숫자 (int형 배열)
+135: 	 */
+136: 	public static void ascSort(int [] n){
+137: 		int count = n.length;
+138: 		for(int i=0;i<count-1;i++){
+139: 			for(int j=0;j<count-1-i;j++){
+140: 				if(n[j] > n[j+1]){
+141: 					int temp = n[j];
+142: 					n[j] = n[j+1];
+143: 					n[j+1]=temp;
+144: 				}
+145: 			}
+146: 		}
+147: 	}
+148: 	
+149: 	/**
+150: 	 * 
+151: 	 *  파라미터로 입력된 임의의 숫자들(int 형 배열 n)
+152: 	 *  을 인덱스 번호대로 (0~ n의 갯수까지) 출력하는 메소드.
+153: 	 * @param n 결과를 출력하고자 하는 인트 배열 (int 배열 형태)
+154: 	 */
+155: 	public static void print(int []n){
+156: 		for(int i=0;i<n.length;i++){
+157: 			System.out.print(n[i]+" ");
+158: 		}
+159: 		System.out.println();
+160: 	}	
+161: 
+162: }

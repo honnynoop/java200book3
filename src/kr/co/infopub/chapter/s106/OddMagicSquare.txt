@@ -1,0 +1,41 @@
+01: package kr.co.infopub.chapter.s106;
+02: 
+03: public class OddMagicSquare extends MagicSquare{
+04: 
+05: 	public OddMagicSquare(int n) {
+06: 		super(n);    // 중요 -> 부모로 넘긴다.
+07: 	}
+08: 	public OddMagicSquare( ) {
+09: 		this(3);
+10: 	}
+11: 	@Override
+12: 	public void make( ){
+13: 		int x=0;
+14: 		int y=n/2;
+15: 		magic[x][y]=1;
+16: 		//System.out.printf("(%d,%d)\t",x,y);
+17: 		for (int i = 2; i <= n*n ; i++) {
+18: 			int temX=x;
+19: 			int temY=y;
+20: 			
+21: 			if( x-1<0 ){
+22: 				x=n-1;
+23: 			}else{
+24: 				x--;
+25: 			}
+26: 			
+27: 			if( y-1<0 ){
+28: 				y=n-1;
+29: 			}else{
+30: 				y--;
+31: 			}
+32: 			
+33: 			if(magic[x][y]!=0){
+34: 				x=temX+1;
+35: 				y=temY;
+36: 			}
+37: 			//System.out.printf("(%d,%d)\t",x,y);
+38: 			magic[x][y]=i;
+39: 		}//for
+40: 	}
+41: }//class 

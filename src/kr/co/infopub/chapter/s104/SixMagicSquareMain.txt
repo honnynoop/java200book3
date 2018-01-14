@@ -1,0 +1,12 @@
+01: package kr.co.infopub.chapter.s104;
+02: import java.util.Scanner;
+03: public class SixMagicSquareMain {
+04: 	public static void main(String[] args) {
+05: 		Scanner scann=new Scanner(System.in);
+06: 		int n=scann.nextInt();
+07: 		System.out.println("6, 10, 14 정수(4n+2)를 입력하세요.");
+08: 		SixMagicSquare sms=new SixMagicSquare(n);
+09: 		sms.make();
+10: 		sms.print();
+11: 	}
+12: }

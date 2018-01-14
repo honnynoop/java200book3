@@ -1,0 +1,10 @@
+01: package kr.co.infopub.chapter.s114;
+02: public class SilverStarMain2 {
+03: 	public static void main(String[] args) {
+04: 		 SilverStar.stepDown(7);
+05: 		 SilverStar.stepUp(7);
+06: 		 SilverStar.stepTri(7);
+07: 		 SilverStar.stepRevTri(7);
+08: 		 SilverStar.stepDia(15);
+09: 	}
+10: }

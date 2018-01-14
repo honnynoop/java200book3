@@ -1,0 +1,143 @@
+001: package kr.co.infopub.chapter.s104;
+002: public class SixMagicSquare {
+003:  private int[][] magic;
+004:  private int n;
+005: 
+006:  public int[][] getMagic() {
+007: 	return magic;
+008:  }
+009:  public SixMagicSquare(int n) {
+010: 	magic=new int[n][n];
+011: 	this.n = n;
+012:  }
+013:  public SixMagicSquare() {
+014:     this(6);
+015:  }
+016:  public void make(){
+017: 	makeA();
+018: 	makeB();
+019: 	makeCD();
+020: 	makeMulti();
+021: 	makeOdd();
+022:  }//
+023:  private void makeA() {
+024: 	for (int i = 0; i <n/2 ; i++) {
+025: 		for (int j = 0; j <n/4 ; j++) {
+026: 			if(i==n/4){
+027: 				magic[i][j+1]=3;
+028: 			}else{
+029: 				magic[i][j]=3;
+030: 			}
+031: 		}
+032: 	}
+033:  }
+034:  private void makeB() {
+035: 	for (int i = 0; i <n/2; i++) {
+036: 		for (int j = 0; j <n/2; j++) {
+037: 			magic[i][j+n/2]=1;
+038: 		}
+039: 	}
+040: 	for (int i = 0; i <n/2; i++) {
+041: 		for (int j = 0; j <n/2-(n/4-1); j++) {
+042: 			magic[i][j+n/2]=2;
+043: 		}
+044: 	}
+045:  }
+046:  private void makeCD() {
+047: 	for (int i = 0; i <n/2; i++) {
+048: 		for (int j = 0; j <n/2; j++) {
+049: 			if(magic[i][j]==0){
+050: 				magic[i+n/2][j]=3;
+051: 			}else{
+052: 				magic[i+n/2][j]=0;
+053: 			}
+054: 			
+055: 			if(magic[i][j+n/2]==1){
+056: 				magic[i+n/2][j+n/2]=2;
+057: 			}else{
+058: 				magic[i+n/2][j+n/2]=1;
+059: 			}
+060: 		}
+061: 	}
+062:  }
+063:  private void makeMulti() {
+064:    for (int i = 0; i < n; i++) {
+065: 	   for (int j = 0; j < n; j++) {
+066: 		    magic[i][j] *= (n/2*n/2);
+067: 	   }
+068:    }
+069:  }
+070:  private void makeOdd() {
+071: 	// Create dependency 생성의존 
+072: 	// 6 마방진은 3마방진을 필요로 한다.
+073: 	OddMagicSquare odd=new OddMagicSquare(n/2);
+074: 	odd.make();    // 3 마방진을 만든다.
+075: 	int[][] mm=odd.getMagic();
+076: 	for (int i = 0; i < n/2; i++) {
+077: 		for (int j = 0; j <n/2 ; j++) {
+078: 			magic[i][j]+=mm[i][j];
+079: 			magic[i][j+n/2]+=mm[i][j];
+080: 			magic[i+n/2][j]+=mm[i][j];
+081: 			magic[i+n/2][j+n/2]+=mm[i][j];
+082: 		}
+083: 	}
+084:  }
+085: 	public void print(){
+086: 		System.out.println();
+087: 		System.out.println(n+" is magic : "+isMagic());
+088: 		for (int i = 0; i < n; i++) {
+089: 			for (int j = 0; j < n; j++) {
+090: 				System.out.print(magic[i][j]+"\t");
+091: 			}
+092: 			System.out.println();
+093: 		}
+094: 	}
+095: 	//마방진이 잘 되었는가를 판단
+096: 	private  boolean isMagic( ){
+097: 		boolean isM=true;
+098: 		int[ ]m=new int[2*n+2];
+099: 		for (int i = 0; i < n; i++) {
+100: 			m[i]=sumRow(i);
+101: 			m[i+n]=sumCol(i);
+102: 		}
+103: 		m[2*n]=sumReverseDia();
+104: 		m[2*n+1]=sumDia();
+105: 		for (int i = 1; i < m.length; i++) {
+106: 			if(m[0]==0 || m[0]!=m[i]){
+107: 				isM=false;
+108: 				break;
+109: 			}
+110: 		}
+111: 		return isM;
+112: 	}
+113: 	//row 행의 열들의 합
+114: 	private int sumRow(int row){
+115: 		int tot=0;
+116: 		for (int i = 0; i < n; i++) {
+117: 			tot+=magic[row][i];
+118: 		}
+119: 		return tot;
+120: 	}
+121: 	//col 열의(열고정)  행들의 합
+122: 	private int sumCol(int col){
+123: 		int tot=0;
+124: 		for (int i = 0; i < n; i++) {
+125: 			tot+=magic[i][col];
+126: 		}
+127: 		return tot;
+128: 	}
+129: 	private int sumDia(){
+130: 		int tot=0;
+131: 		for (int i = 0; i < n ; i++) {
+132: 			tot+=magic[i][n-1-i];
+133: 		}
+134: 		return tot;
+135: 	}
+136: 	private int sumReverseDia(){
+137: 		int tot=0;
+138: 		for (int i = 0; i < n ; i++) {
+139: 			tot+=magic[i][i];
+140: 		}
+141: 		return tot;
+142: 	}
+143: }

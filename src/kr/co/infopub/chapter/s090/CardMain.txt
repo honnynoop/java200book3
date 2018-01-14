@@ -1,0 +1,17 @@
+01: package kr.co.infopub.chapter.s090;
+02: public class CardMain {
+03: 	public static void main(String[] args) {
+04: 		String csuit1="H", cvalu1="6";        // suit+value
+05: 		String csuit2="H", cvalu2="3";        // suit+value
+06: 		// 객체 생성
+07: 		Card c1=new Card("H6");               // 생성자 (String 아규먼트) H6
+08: 		Card c2=new Card(csuit1+cvalu1);      // 생성자 (String 아규먼트) H6
+09: 		Card c3=new Card();                   // 기본 생성자  H2를 갖음
+10: 		Card c4=new Card(csuit2+cvalu2);      // 생성자 (String 아규먼트) H3
+11: 		
+12: 		System.out.printf("%s,%s,%s.%s\n",c1,c2,c3,c4);
+13: 		System.out.println(c1.equals(c2));    // 해쉬 코드는 다름
+14: 		System.out.println(c1.getCardVal().equals(c2.getCardVal())); //값 동일
+15: 		//참조타입은 equals()로 비교하세요.
+16: 	}
+17: }

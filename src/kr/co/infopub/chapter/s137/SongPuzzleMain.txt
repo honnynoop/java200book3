@@ -1,0 +1,13 @@
+01: package kr.co.infopub.chapter.s137;
+02: import java.util.Scanner;
+03: public class SongPuzzleMain {
+04: 	public static void main(String[] args) {
+05: 		Scanner scann=new Scanner(System.in);
+06: 		int n=scann.nextInt();
+07: 		System.out.println("2이상의 정수를 입력하세요.");
+08: 		SongPuzzle puzzle=new SongPuzzle(n);  //홀수, 짝수에 모두 적용가능
+09: 		//puzzle.makePuzzle(false); // 과정 보이지 않기
+10: 		puzzle.makePuzzle(true);    // 과정 보이기
+11: 		puzzle.print();
+12: 	}
+13: }

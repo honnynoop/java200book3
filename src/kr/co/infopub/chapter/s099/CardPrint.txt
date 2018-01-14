@@ -1,0 +1,182 @@
+001: package kr.co.infopub.chapter.s099;
+002: public class CardPrint {
+003:  CardCase cc = new CardCase();
+004:  CardLaw rule = new CardLaw();
+005: 
+006:  private int TotalPlayer;
+007:  private int TotalDealer;
+008: 
+009:  public CardPrint() {}
+010: 
+011:  public void make(){
+012: 	cc.make();
+013:  }
+014:  public void shuffle(){
+015: 	cc.shuffle();//카드 섞기
+016:  }
+017:  public void print() {
+018: 
+019: 	System.out.println("<플레이어 카드>");
+020: 	System.out.println("---------------------");
+021: 	
+022: 	System.out.print("1번째 카드 : ");
+023: 	System.out.println(cc.getCards().get(0));
+024: 	System.out.print("1번째 카드 수 : ");
+025: 	System.out.println(num(0));
+026: 	
+027: 	System.out.print("2번째 카드 : ");
+028: 	System.out.println(cc.getCards().get(1));
+029: 	System.out.print("2번째 카드 수 : ");
+030: 	System.out.println(num(1));
+031: 	
+032: 	System.out.print("플레이어의 2장의 카드합 : ");
+033: 	System.out.println(sumP());
+034: 	TotalPlayer = sumP();
+035: 	
+036: 	System.out.println("---------------------");
+037: 	
+038: 	if (rule.natural(sumP(), sumD())) {
+039: 		System.out.println("예외처리로 바로 겨룹니다!");
+040: 		TotalPlayer = sumP();
+041: 	}else if (rule.stand(sumP(), sumD())) {
+042: 		standPrintPl();
+043: 	}else if (rule.thirdCardPlayer(sumP())) {
+044: 		System.out.println("3 번째 카드를 받습니다!");
+045: 		System.out.println("3 번째 카드 : " + cc.getCards().get(4));
+046: 		System.out.println("3 번째 카드 수 : " + num(4));
+047: 		System.out.println("---------------------");
+048: 		System.out.println("플레이어의 총 카드 합 : " + total(sumP(), num(4)));
+049: 		TotalPlayer = total(sumP(), num(4));
+050: 	}
+051: 	System.out.println("---------------------");
+052: 	System.out.println();
+053: 	
+054: 	System.out.println("<딜러 카드>");
+055: 	System.out.println("---------------------");
+056: 	
+057: 	System.out.print("1번째 카드 : ");
+058: 	System.out.println(cc.getCards().get(2));
+059: 	System.out.print("1번째 카드 수 : ");
+060: 	System.out.println(num(2));
+061: 	
+062: 	System.out.print("2번째 카드 : ");
+063: 	System.out.println(cc.getCards().get(3));
+064: 	System.out.print("2번째 카드 수 : ");
+065: 	System.out.println(num(3));
+066: 		
+067: 	System.out.print("딜러의 2장의 카드합 : ");
+068: 	System.out.println(sumD());
+069: 	TotalDealer = sumD();
+070: 	
+071: 	System.out.println("---------------------");
+072: 			
+073: 	if (rule.natural(sumP(), sumD())) {
+074: 		System.out.println("예외처리로 바로 겨룹니다!");
+075: 		TotalDealer = sumD();
+076: 	}
+077: 	else if (rule.stand(sumP(), sumD())) {
+078: 		standPrintDl();
+079: 	}
+080: 	else if (rule.thirdCardDealer(sumD(), num(4))) {
+081: 		System.out.println("3 번째 카드를 받습니다!");
+082: 		System.out.println("3 번째 카드 : " + cc.getCards().get(5));
+083: 		System.out.println("3 번째 카드 수 : " + num(5));
+084: 		System.out.println("---------------------");
+085: 		System.out.println("딜러의 총 카드 합 : " + total(sumD(), num(5)));
+086: 		TotalDealer = total(sumD(), num(5));
+087: 	}
+088: 	System.out.println("---------------------");
+089: 	System.out.println();
+090:  }
+091:  public void standPrintPl() {
+092: 	System.out.println("스탠드 입니다.");
+093: 	if (sumP() > 5 && sumP() < 8) {
+094: 		if (sumD() < 6 ) {
+095: 			System.out.println("딜러는 3번째 카드를 받습니다.");
+096: 		}else {
+097: 			System.out.println("바로 겨룹니다!");
+098: 			TotalPlayer = sumP();
+099: 		}
+100: 	}
+101: 	else if (sumD() == 7 ) {
+102: 		if (sumP() < 6) {
+103: 			System.out.println("3 번째 카드를 받습니다!");
+104: 			System.out.println("3 번째 카드 : " + cc.getCards().get(4));
+105: 			System.out.println("3 번째 카드 수 : " + num(4));
+106: 			System.out.println("---------------------");
+107: 			System.out.println("플레이어의 총 카드 합 : " + total(sumP(), num(4)));
+108: 			TotalPlayer = total(sumP(), num(4));
+109: 		}else {
+110: 			System.out.println("바로 겨룹니다.");
+111: 			TotalPlayer = sumP();				
+112: 		}
+113: 	}
+114:  }
+115:  public void standPrintDl() {
+116: 	System.out.println("스탠드 입니다.");
+117: 	if (sumP() > 5 && sumP() < 8) {
+118: 		if (sumD() < 6 ) {
+119: 			System.out.println("3 번째 카드를 받습니다!");
+120: 			System.out.println("3 번째 카드 : " + cc.getCards().get(5));
+121: 			System.out.println("3 번째 카드 수 : " + num(5));
+122: 			System.out.println("---------------------");
+123: 			System.out.println("딜러의 총 카드 합 : " + total(sumD(), num(5)));
+124: 			TotalDealer = total(sumD(), num(5));
+125: 		}	
+126: 		else {
+127: 			System.out.println("바로 겨룹니다!");
+128: 			TotalDealer = sumD();
+129: 		}
+130: 	}
+131: 	else if (sumD() == 7 ) {
+132: 		if (sumP() < 6) {
+133: 			System.out.println("플레이어는 3번째 카드를 받습니다.");
+134: 		}
+135: 		else {
+136: 			System.out.println("바로 겨룹니다.");
+137: 			TotalDealer = sumD();
+138: 		}
+139: 	}
+140:  }
+141: 
+142:  public int num(int n) {
+143: 	int num;
+144: 	Card str = cc.getCards().get(n);
+145: 	char ch = str.getCardVal().charAt(1);//H3				
+146: 	switch (ch) {
+147: 		case 'A' : num = 1;break;
+148: 		case 'T' : 
+149: 		case 'J' : 
+150: 		case 'Q' : 
+151: 		case 'K' : num = 0; break;	//fall through
+152: 		default : num=ch-'0';break;//'9'-'0'
+153: 	}
+154: 	return num;
+155:  }
+156:  public int sumP() {
+157: 	int sumP = 0;
+158: 	for (int i = 0; i < 2; i++) {
+159: 		sumP += num(i);
+160: 		if (sumP > 9) {
+161: 			sumP -= 10;//1의 자리수
+162: 		}			
+163: 	}
+164: 	return sumP;
+165:  }
+166:  public int sumD() {
+167: 	int sumD = 0;
+168: 	for (int i = 2; i < 4; i++) {
+169: 		sumD += num(i);
+170: 	}
+171: 	return sumD%10;
+172:  }
+173:  public int total(int x, int y){
+174: 	return (x+y)%10;
+175:  }
+176:  public int returnPlayer() {
+177: 	return TotalPlayer;
+178:  }
+179:  public int returnDealer() {
+180: 	return TotalDealer;
+181:  }
+182: }

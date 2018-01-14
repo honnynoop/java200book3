@@ -1,0 +1,8 @@
+1: package kr.co.infopub.chapter.s120;
+2: public class Lotto6NumMain {
+3: 	public static void main(String[] args) {
+4: 		Lotto6Num lot=new Lotto6Num(45,6);
+5: 		lot.make();
+6: 		lot.print();
+7: 	}
+8: }

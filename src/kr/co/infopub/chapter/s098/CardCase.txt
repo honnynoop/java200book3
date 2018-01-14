@@ -1,0 +1,100 @@
+001: package kr.co.infopub.chapter.s098;
+002: import java.util.ArrayList;
+003: import java.util.Collections;
+004: import java.util.Comparator;
+005: import java.util.List;
+006: public class CardCase {
+007:  // aggregation : CardCase는 Card로 구성된다.
+008:  private List<Card> cards=new ArrayList<Card>();
+009:  public CardCase() {
+010: 	cards.clear(); // 내용 지우기
+011:  }
+012:  // List 반환
+013:  public List<Card> getCards() { 
+014: 	return cards;
+015:  }
+016:  // List에 저장된 Card의 개수
+017:  public int count(){ 
+018: 	return cards.size(); // 저장된 Card 개수
+019:  }
+020:  // List의 index번째 Card
+021:  public Card getCard(int index){
+022: 	return cards.get(index);  // index번째 Card
+023:  }
+024:  // 서로 다른 카드 20장 만들기
+025:  public void make(){
+026: 	cards.clear(); // 내용 지우기
+027: 	int suit=CardUtil.SUIT.length; // 0~3
+028: 	int valu=CardUtil.VALU.length; // 0~12
+029: 	int count=0;
+030: 	//서로 다른 20개의 카드를 만든다.
+031: 	while(count!=valu*suit){    // 20장이 될때까지
+032: 		Card c=new Card();      // 임의의 카드를 만든다
+033: 		if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+034: 			cards.add(c);       // 같은 객체가 아니라면 저장
+035: 			count++;
+036: 		}
+037: 	}
+038:  }
+039:  public void shuffle(){
+040: 	Collections.shuffle(cards); // 카드 섞기
+041:  }
+042:  public void print(){
+043: 	int valu=CardUtil.VALU.length;
+044: 	for (int i = 0; i < cards.size(); i++) {
+045: 		Card c=cards.get(i);
+046: 		System.out.printf("%s ",c.toString());
+047: 		if((i+1)%valu==0){
+048: 			System.out.println();
+049: 		}
+050: 	}
+051:  }
+052:  // CardComp 클래스가 없다.
+053:  public void sort(){
+054: 	Comparator<Card> cmp=new Comparator<Card>() {
+055: 		@Override
+056: 		public int compare (Card c1, Card c2) {
+057: 			return c1.getCardVal().compareTo(c2.getCardVal());
+058: 		}
+059: 	};
+060: 	cards.sort(cmp); 
+061:  }
+062:  // CardRomp 클래스가 없다.
+063:  public void rsort(){
+064: 	// 익명 -anonymous 
+065: 	cards.sort(new Comparator<Card>() {
+066: 		@Override
+067: 		public int compare (Card c1, Card c2) {
+068: 			return - c1.getCardVal().compareTo(c2.getCardVal());
+069: 		}
+070: 	});
+071: }
+072:  // sort를 rambda로 구현
+073:  public void rambdasort(){
+074:     Comparator<Card> cmp=(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+075: 	cards.sort(cmp);
+076: 	//cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+077:  }
+078:  public void rambdasort2(){
+079: 	Comparator<Card> cmp=Comparator.comparing(Card::getCardVal);
+080: 	cards.sort(cmp); 
+081: 	//cards.sort(Comparator.comparing(Card::getCardVal)); 
+082:  }
+083:  public void rambdasort3(){
+084: 	Comparator<Card> cmp=Card::compareCard;
+085: 	cards.sort(cmp);  // static 
+086: 	//cards.sort(Card::compareCard);  // static 
+087:  }
+088:  // rsort를 rambda로 구현
+089:  public void rambdarsort(){
+090: 	cards.sort(
+091: 	(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+092:  }
+093:  public void rambdarsort2(){
+094: 	Comparator<Card> mycard =(c1, c2)->{return c1.getCardVal().compareTo(c2.getCardVal());};
+095: 	cards.sort( mycard.reversed() );
+096:  }
+097:  public void rambdarsort3(){
+098: 	cards.sort(Card::compareRCard);  //static 
+099:  }
+100: }

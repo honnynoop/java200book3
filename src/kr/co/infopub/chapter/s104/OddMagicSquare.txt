@@ -1,0 +1,109 @@
+001: package kr.co.infopub.chapter.s104;
+002: 
+003: public class OddMagicSquare {
+004: 
+005: 	private int [][] magic;
+006: 	private int n;
+007: 
+008: 	public int[][] getMagic() {
+009: 		return magic;
+010: 	}
+011: 	public OddMagicSquare(int n) {
+012: 		magic=new int[n][n];
+013: 		this.n=n;
+014: 	}
+015: 	public OddMagicSquare( ) {
+016: 		this(3);
+017: 	}
+018: 	public void make( ){
+019: 		int x=0;
+020: 		int y=n/2;
+021: 		magic[x][y]=1;
+022: 		//System.out.printf("(%d,%d)\t",x,y);
+023: 		for (int i = 2; i <= n*n ; i++) {
+024: 			int temX=x;
+025: 			int temY=y;
+026: 			
+027: 			if( x-1<0 ){
+028: 				x=n-1;
+029: 			}else{
+030: 				x--;
+031: 			}
+032: 			
+033: 			if( y-1<0 ){
+034: 				y=n-1;
+035: 			}else{
+036: 				y--;
+037: 			}
+038: 			
+039: 			if(magic[x][y]!=0){
+040: 				x=temX+1;
+041: 				y=temY;
+042: 			}
+043: 			//System.out.printf("(%d,%d)\t",x,y);
+044: 			magic[x][y]=i;
+045: 		}//for
+046: 	}
+047: 	public void print(){
+048: 		System.out.println();
+049: 		System.out.println(n+" is magic : "+isMagic());
+050: 		for (int i = 0; i < n; i++) {
+051: 			for (int j = 0; j < n; j++) {
+052: 				System.out.print(magic[i][j]+"\t");
+053: 			}
+054: 			System.out.println();
+055: 		}
+056: 	}
+057: 	//마방진이 잘 되었는가를 판단
+058: 	private  boolean isMagic( ){
+059: 		boolean isM=true;
+060: 		int[ ]m=new int[2*n+2];
+061: 		for (int i = 0; i < n; i++) {
+062: 			m[i]=sumRow(i);
+063: 			m[i+n]=sumCol(i);
+064: 		}
+065: 		m[2*n]=sumReverseDia();
+066: 		m[2*n+1]=sumDia();
+067: 		for (int i = 1; i < m.length; i++) {
+068: 			if(m[0]==0 || m[0]!=m[i]){
+069: 				isM=false;
+070: 				break;
+071: 			}
+072: 		}
+073: 		return isM;
+074: 	}
+075: 	//row 행의 열들의 합
+076: 	private int sumRow(int row){
+077: 		int tot=0;
+078: 		for (int i = 0; i < n; i++) {
+079: 			tot+=magic[row][i];
+080: 		}
+081: 		return tot;
+082: 	}
+083: 	
+084: 	//col 열의(열고정)  행들의 합
+085: 	private int sumCol(int col){
+086: 		int tot=0;
+087: 		for (int i = 0; i < n; i++) {
+088: 			tot+=magic[i][col];
+089: 		}
+090: 		return tot;
+091: 	}
+092: 	
+093: 	private int sumDia(){
+094: 		int tot=0;
+095: 		for (int i = 0; i < n ; i++) {
+096: 			tot+=magic[i][n-1-i];
+097: 		}
+098: 		return tot;
+099: 	}
+100: 	
+101: 	private int sumReverseDia(){
+102: 		int tot=0;
+103: 		for (int i = 0; i < n ; i++) {
+104: 			tot+=magic[i][i];
+105: 		}
+106: 		return tot;
+107: 	}
+108: 	
+109: }//class 

@@ -1,0 +1,66 @@
+01: package kr.co.infopub.chapter.s099;
+02: import java.util.ArrayList;
+03: import java.util.Collections;
+04: import java.util.List;
+05: import java.util.stream.IntStream;
+06: public class CardCase {
+07: 	// aggregation : CardCase는 Card로 구성된다.
+08:  private List<Card> cards=new ArrayList<Card>();
+09:  public CardCase() {
+10: 	cards.clear(); // 내용 지우기
+11:  }
+12:  public List<Card> getCards() {
+13: 	return cards;
+14:  }
+15:  public int count(){
+16: 	return cards.size(); // 저장된 Card 개수
+17:  }
+18:  public Card getCard(int index){
+19: 	return cards.get(index);  // index번째 Card
+20:  }
+21:  public void make(){
+22: 	cards.clear(); // 내용 지우기
+23: 	int deck=CardUtil.SUIT.length; // 0~3
+24: 	int suit=CardUtil.VALU.length; // 0~12
+25: 	int count=0;
+26: 	//서로 다른 20개의 카드를 만든다.
+27: 	while(count!=deck*suit){    // 20장이 될때까지
+28: 		Card c=new Card();      // 임의의 카드를 만든다
+29: 		if(!cards.contains(c)){ // contains -> equals()를 이용해 비교
+30: 			cards.add(c);       // 같은 객체가 아니라면 저장
+31: 			count++;
+32: 		}
+33: 	}
+34:  }
+35:  public void shuffle(){
+36: 	Collections.shuffle(cards); // 카드 섞기
+37:  }
+38: /* public void print(){
+39: 	int valu=CardUtil.VALU.length;
+40: 	for (int i = 0; i < cards.size(); i++) {
+41: 		Card c=cards.get(i);
+42: 		System.out.printf("%s ",c.toString());
+43: 		if((i+1)%valu==0){
+44: 			System.out.println();
+45: 		}
+46: 	}
+47:  }*/
+48:  public void print(){
+49: 	int suit=CardUtil.VALU.length;
+50: 	IntStream.range(0, cards.size())
+51: 	  .forEach(
+52: 		i ->{ System.out.printf("%s ",cards.get(i).toString());
+53: 			  if((i+1)%suit==0){System.out.println();} 
+54: 	        }
+55: 	    );
+56:  }
+57:  // CardComp 클래스가 없다.
+58:  public void sort(){
+59: 	cards.sort((c1, c2) ->{return c1.getCardVal().compareTo(c2.getCardVal());});
+60:  }
+61:  // CardRomp 클래스가 없다.
+62:  public void rsort(){
+63: 	cards.sort(
+64: 			(c1, c2) ->{return - c1.getCardVal().compareTo(c2.getCardVal());});
+65:  }
+66: }

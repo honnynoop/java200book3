@@ -1,0 +1,34 @@
+01: package kr.co.infopub.chapter.s105;
+02: public class FourMagicSquare extends MagicSquare{
+03: 	
+04: 	public FourMagicSquare(int n) {
+05: 		super(n);
+06: 	}
+07: 	public FourMagicSquare() {
+08: 		this(4);
+09: 	}
+10: 	public void make(){
+11: 		makeA();
+12: 		makeR();
+13: 	}
+14: 	private void makeR() {
+15: 		for (int i = 0; i < n; i++) {
+16: 			for (int j = 0; j < n; j++) {
+17: 				if ((i >= 0 && i < n / 4) || (i >= n / 4 * 3 && i < n)) {
+18: 					if (j >= n / 4 && j < n / 4 * 3) {
+19: 						magic[i][j] = n * n - (i * n + j);
+20: 					}
+21: 				} else {// i°¡ Áß¾Ó
+22: 					if ((j >= 0 && j < n / 4) || (j >= n / 4 * 3 && j < n)) {// ¾çÂÊ
+23: 						magic[i][j] = n * n - (i * n + j);
+24: 					}
+25: 				}
+26: 			}
+27: 		}
+28: 	}
+29: 	private void makeA() {
+30: 		for (int i = 0; i <n*n; i++) {
+31: 			magic[i/n][i%n]= i+1;
+32: 		}
+33: 	}
+34: }

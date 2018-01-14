@@ -1,0 +1,8 @@
+1: package kr.co.infopub.chapter.s117;
+2: public class JAPICalendarMain {
+3: 	public static void main(String[] args) {
+4: 		JAPICalendar haecal=new JAPICalendar();
+5: 		//haecal.showCal(2017, 2);
+6: 		haecal.showCal(2017);
+7: 	}
+8: }

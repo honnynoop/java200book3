@@ -1,0 +1,8 @@
+1: package kr.co.infopub.chapter.s116;
+2: public class JCalendarMain {
+3: 	public static void main(String[] args) {
+4: 		JCalendar cal=new JCalendar();
+5: 		//cal.showCal(2017, 2);
+6: 		cal.showCal(2017);
+7: 	}
+8: }

@@ -1,0 +1,48 @@
+01: package kr.co.infopub.chapter.s119;
+02: import java.io.File;
+03: import java.io.IOException;
+04: import java.nio.file.Files;
+05: import java.text.SimpleDateFormat;
+06: import java.util.Date;
+07: public class FilesCopys {
+08:  public static void copyUsingFiles(File source, File target) {
+09: 	try {
+10: 		Files.copy(source.toPath(), target.toPath());
+11: 	} catch (IOException e) {
+12: 		System.out.println(e);
+13: 	}
+14:  }	
+15:  public static void main(String[] args) {
+16: 	File ff=new File("upload");
+17: 	File[] ffs=ff.listFiles();
+18: 	// 2017-05-03 01:23
+19: 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");	
+20: 	SimpleDateFormat fds=new SimpleDateFormat("yyyyMMdd");  // 20170503
+21: 	for (File fff: ffs) {
+22: 		String absfile=fff.getAbsolutePath();
+23: 		if(fff.isFile()){
+24: 			// 파일이름 23424123123.txt
+25: 			String f=(absfile).substring(absfile.lastIndexOf("\\")+1);
+26: 			String fre="";
+27: 			if(f.indexOf('.')>=0){
+28: 				fre=f.substring(0,f.indexOf('.'));
+29: 			}
+30: 			Date longDay=new Date(Long.parseLong(fre)); //long-> Date
+31: 			String fname=sdf.format(longDay);           //Date -> String
+32: 			String newFname=fds.format(longDay);        // 23424123123
+33: 			System.out.println(fname+"\t\t"+newFname);  //Date -> String
+34: 			// 23424123123.txt -> 20170503/23424123123.txt
+35: 			File newFile=new File("upload\\"+newFname); //옮기려고 하는 디렉토리
+36: 			File toFile=new File("upload\\"+newFname+"\\"+f);//옮기려는 파일
+37: 			if(!newFile.exists()){  //디렉토리가 존재하지 않는가?
+38: 				boolean iss=newFile.mkdirs();   //존재하지 않으면 만들자
+39: 				if(iss){
+40: 					copyUsingFiles(fff, toFile);//파일 복사
+41: 				}
+42: 			}else{
+43: 				 copyUsingFiles(fff, toFile);//파일복사
+44: 			}
+45: 		}
+46: 	}
+47:  }
+48: }

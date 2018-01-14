@@ -1,0 +1,82 @@
+01: package kr.co.infopub.chapter.s097;
+02: public class CardRule {
+03: /*
+04:  * C3C8      3000
+05:  * C1C3 C1C8 2000
+06:  * CTST x100 1000
+07:  * CXSX x100 X00
+08:  * C1S2 C2S1 99   ¾Ë¸®
+09:  * C1S4 S1C4 98   µ¶»ç  
+10:  * C1S9 S9C1 97   »æ
+11:  * C1ST STC1 96   Àå»æ
+12:  * CTS4 STC4 95   Àå»ç
+13:  * C4S6 S4C6 94   ¼¼·ú
+14:  * ²ý X 10
+15:  */
+16:  public  int toV(Card c){
+17: 	int count=0;
+18: 	switch(c.getCardVal().charAt(1)){
+19: 	 case 'A': count=1; break;
+20: 	 case 'T': count=10; break;
+21: 	 default : count=c.getCardVal().charAt(1)-'0';break; //'7'-'0'
+22: 	}
+23: 	return count;
+24:  }//
+25:  // ±¤ SUIT C
+26:  public  boolean isLight(Card c){  // ±¤ ¸ðµç SUIT°¡ C
+27: 	boolean isL=false;
+28: 	if(c.getCardVal().charAt(0)=='C'){
+29: 		isL=true;
+30: 	}
+31: 	return isL;
+32:  }//
+33:  // ±¤(C)ÀÌ¸é¼­ ¹ë·ù°¡ 1,3,8 -> C1, C3, C8
+34:  private boolean is138(Card c){
+35: 	boolean isC=false;
+36: 	if(isLight(c)){
+37: 		if(c.getCardVal().charAt(1)=='1' ||
+38: 				c.getCardVal().charAt(1)=='3'||
+39: 				c.getCardVal().charAt(1)=='8'){
+40: 			isC= true;
+41: 		}
+42: 	}
+43: 	return isC;
+44:  }
+45:  // ÀÌÂ÷¿ø ¹æÁ¤½ÄÀ» ÀÌ¿ë : ´õÇØ¼­ 11, °öÇØ¼­ 24 -> 3,8
+46:  public  int rule(Card c1, Card c2){
+47: 	int count=0;
+48: 	if(is138(c1) && is138(c2) ){          //C1, C3, C8Àº ±¤
+49: 		//±¤Ã³¸® 1, 3, 8
+50: 		if((toV(c1)*toV(c2)==24 ) && (toV(c1)+toV(c2)==11)){     //3 8
+51: 			count=3000;
+52: 		}else if((toV(c1)*toV(c2)==3 ) && (toV(c1)+toV(c2)==4)){ //1 3
+53: 			count=2000;
+54: 		}else if((toV(c1)*toV(c2)==8 )&& (toV(c1)+toV(c2)==9)){  //1 8
+55: 			count=2000;
+56: 		}
+57: 	}else {
+58: 		//¶¯Ã³¸®
+59: 		if((toV(c1)==toV(c2))){    // 10, 10 -> 1000
+60: 			count=toV(c1)*100;
+61: 		}else{
+62: 			//³´¶¯
+63: 			if((toV(c1)*toV(c2)==2 ) && (toV(c1)+toV(c2)==3)){//1 2
+64: 				count=99;
+65: 			}else if((toV(c1)*toV(c2)==4 ) && (toV(c1)+toV(c2)==5)){//1 4 
+66: 				count=98;
+67: 			}else if((toV(c1)*toV(c2)==9 ) && (toV(c1)+toV(c2)==10)){//1 9
+68: 				count=97;
+69: 			}else if((toV(c1)*toV(c2)==10 ) && (toV(c1)+toV(c2)==11)){//1 10
+70: 				count=96;
+71: 			}else if((toV(c1)*toV(c2)==40 ) && (toV(c1)+toV(c2)==14)){//4 10
+72: 				count=95;
+73: 			}else if((toV(c1)*toV(c2)==24 ) && (toV(c1)+toV(c2)==10)){// 4 6 
+74: 				count=94;
+75: 			}else{//²ý
+76: 				count=((toV(c1)+toV(c2))%10)*10;
+77: 			}
+78: 		}
+79: 	}
+80: 	return count;
+81:  }
+82: }

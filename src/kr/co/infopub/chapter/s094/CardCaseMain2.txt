@@ -1,0 +1,9 @@
+1: package kr.co.infopub.chapter.s094;
+2: public class CardCaseMain2 {
+3: 
+4: 	public static void main(String[] args) {
+5: 
+6: 		System.out.println(Recursion.c(20, 2));
+7: 
+8: 	}
+9: }

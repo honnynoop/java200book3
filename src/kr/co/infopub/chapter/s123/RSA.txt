@@ -1,0 +1,82 @@
+01: package kr.co.infopub.chapter.s123;
+02: import java.util.ArrayList;
+03: public class RSA {
+04:  public static final int START=200;
+05:  private int p=11;
+06:  private int q=7;
+07:  private int n;
+08:  private int phiN;
+09:  private int e;
+10:  private int d;
+11:  public void makePQ(){  
+12: 	p=(int)(Math.random()*START);
+13: 	q=(int)(Math.random()*START);
+14: 	while((p==q)|| (p<100 || q<100) ||
+15: 	 (!Java200Math.isPrime(p) || !Java200Math.isPrime(q))){
+16: 		p=(int)(Math.random()*START);
+17: 		q=(int)(Math.random()*START);
+18: 	}
+19:  }
+20:  public void makeN(){
+21: 	n=p*q;
+22:  }
+23:  public int getN() {
+24: 	return n;
+25:  }
+26:  public void print(){
+27: 	System.out.printf("(p,q)=(%d, %d)\n"
+28: 	+ "(n,phi)=(%d,%d)\n(e,d)=(%d,%d)\n",p,q,n,phiN,e,d);
+29:  }
+30:  public void makePHIN(){
+31: 	this.phiN=(p-1)*(q-1);
+32:  }
+33:  public int getPhiN() {
+34: 	return phiN;
+35:  }
+36:  public void makeE(){
+37: 	ArrayList<Integer> 
+38: 	es=new ArrayList<Integer>();
+39: 	for (int i = 2; i < phiN; i++) {
+40: 		if(Java200Math.gcd(phiN, i)==1){
+41: 			es.add(i);
+42: 			//System.out.printf(i+",");
+43: 		}
+44: 	}
+45: 	e=es.get(es.size()-1);//가장큰것.(랜덤으로 만들면 좋다)
+46:  }
+47:  public void makeD(){
+48: 	int count=2;
+49: 	while(!(count*e%phiN==1 && count!=e)){
+50: 		count++;
+51: 	}
+52: 	d=count;
+53:  }
+54:  public int toCiph(int m){
+55: 	int tot=1;
+56: 	for (int i = 0; i < e; i++) {
+57: 		tot=(tot*m)%n;
+58: 	}
+59: 	return tot;
+60:  }
+61:  public int toUnCiph(int c){
+62: 	int tot=1;
+63: 	for (int i = 0; i < d; i++) {
+64: 		tot=(tot*c)%n;
+65: 	}
+66: 	return tot;
+67:  }
+68:  public static void main(String[] args) {
+69: 	RSA aa=new RSA();
+70: 	aa.makePQ();
+71: 	aa.makeN();
+72: 	aa.makePHIN();
+73: 	aa.makeE();
+74: 	aa.makeD();
+75: 	aa.print();
+76: 	for(int i=65 ; i<200 ;i++){
+77: 		int bbb=aa.toCiph(i);
+78: 		int ccc=aa.toUnCiph(bbb);
+79: 		System.out.println(String.format("%d, %d, %d", i,bbb,ccc));
+80: 	}
+81:  }
+82: }

@@ -1,0 +1,18 @@
+01: package kr.co.infopub.chapter.s137;
+02: public class FifteenPuzzleMain {
+03: 	public static void main(String[] args) {
+04: 		// 15 Game 테스트 
+05: 		int[][]m={{1,2,3,4},
+06: 		{5,6,0,7},
+07: 		{9,10,11,8},
+08: 		{13,14,15,12}};
+09: 		FifteenPuzzle puzzle=new FifteenPuzzle(m);  // 짝수에 적용가능
+10: 		puzzle.testPuzzles();    // 테스트  배열 m 15 Game 가능? 
+11: 		puzzle.print();
+12: 		// 15 Game 만들기 
+13: 		FifteenPuzzle puzzle2=new FifteenPuzzle();  // 짝수에 적용가능
+14: 		//puzzle2.makePuzzle(false); // 과정 보이지 않기
+15: 		puzzle2.makePuzzle(true);    //과정보이기
+16: 		puzzle2.print();
+17: 	}
+18: }

@@ -1,0 +1,33 @@
+01: package kr.co.infopub.chapter.s094;
+02: 
+03: public class Recursion {
+04: 	
+05: 	public static void main(String[] args) {
+06: 		int count=pc(5,3);
+07: 		System.out.println(count);
+08: 	}
+09: 	//permutation
+10: 	public static int p(int n, int r){
+11: 		if(r==0){
+12: 			return 1;
+13: 		}else{
+14: 			return (n-r+1)*p(n,r-1);
+15: 		}
+16: 	}
+17: 	//combination
+18: 	public static int c(int n, int r){
+19: 		if(n==r || r==0){
+20: 			return 1;
+21: 		}else{
+22: 			return (n-r+1)*c(n,r-1)/r;
+23: 		}
+24: 	}
+25: 	//파스칼의 3각형이용
+26: 	public static int pc(int n, int r){
+27: 		if(n==r || r==0){
+28: 			return 1;
+29: 		}else{
+30: 			return pc(n-1,r-1)+pc(n-1,r);
+31: 		}
+32: 	}
+33: }

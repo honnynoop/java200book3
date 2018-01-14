@@ -1,0 +1,32 @@
+01: <?xml version="1.0" encoding="UTF-8"?>
+02: <class-diagram version="1.2.0" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+03:   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+04:   <class id="1" language="java" name="kr.co.infopub.chapter.s099.OddMagicSquare" project="java200new" 
+05:     file="/java200new/src/kr/co/infopub/chapter/s099/OddMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+06:     <position height="-1" width="-1" x="220" y="254"/>    
+07:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+08:       sort-features="false" accessors="true" visibility="true">      
+09:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+10:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+11:     </display>  
+12:   </class>  
+13:   <class id="2" language="java" name="kr.co.infopub.chapter.s099.SixMagicSquare" project="java200new" 
+14:     file="/java200new/src/kr/co/infopub/chapter/s099/SixMagicSquare.java" binary="false" corner="BOTTOM_RIGHT">    
+15:     <position height="-1" width="-1" x="552" y="253"/>    
+16:     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+17:       sort-features="false" accessors="true" visibility="true">      
+18:       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+19:       <operations public="true" package="true" protected="true" private="true" static="true"/>    
+20:     </display>  
+21:   </class>  
+22:   <dependency id="3">    
+23:     <end type="SOURCE" refId="2"/>    
+24:     <end type="TARGET" refId="1"/>  
+25:   </dependency>  
+26:   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+27:     sort-features="false" accessors="true" visibility="true">    
+28:     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+29:     <operations public="true" package="true" protected="true" private="true" static="true"/>  
+30:   </classifier-display>  
+31:   <association-display labels="true" multiplicity="true"/>
+32: </class-diagram>

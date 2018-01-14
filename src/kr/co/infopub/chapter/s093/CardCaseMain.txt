@@ -1,0 +1,14 @@
+01: package kr.co.infopub.chapter.s093;
+02: public class CardCaseMain {
+03: 	public static void main(String[] args) {
+04: 		CardCase cc=new CardCase();
+05: 		cc.make();     // 서로 다른 카드 20장 만들기
+06: 		cc.print();
+07: 		System.out.println("--------------------------");
+08: 		cc.shuffle();   // 카드 섞기
+09: 		cc.print();
+10: 		System.out.println("--------------------------");
+11: 		cc.shuffle();   // 카드 섞기
+12: 		cc.print();
+13: 	}
+14: }

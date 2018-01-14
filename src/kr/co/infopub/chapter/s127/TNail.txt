@@ -1,0 +1,66 @@
+01: package kr.co.infopub.chapter.s127;
+02: public class TNail {
+03: 	private int m;
+04: 	private int n;
+05: 	private int[][] loc;
+06: 	public TNail(int m, int n) {
+07: 		super();
+08: 		this.m = m;
+09: 		this.n = n;
+10: 		loc=new int[m][n];
+11: 	}
+12: 	public void make(){
+13: 		int x=0;
+14: 		int y=0;
+15: 		int d=1;
+16: 
+17: 		for (int i = 0; i < m; i++) {
+18: 			for (int j = 0; j < n; j++) {
+19: 				loc[x][y]=i*n+j+1;//넣고
+20: 				if(d==0){  
+21: 					//2) 오른쪽이동
+22: 					if(y+1<n && loc[x][y+1]==0){
+23: 						y++;  // 오른쪽
+24: 					}else{    // 오른쪽 벽또는 숫자
+25: 						d=3;  
+26: 						x--;  // 위로
+27: 					}
+28: 				} else if(d==1){
+29: 					//1) 아래로 내려가자
+30: 					if(x+1<n && loc[x+1][y]==0){
+31: 						x++; // 아래로
+32: 					}else{   // 아래쪽 벽또는 숫자
+33: 						d=0; 
+34: 						y++; // 오른쪽
+35: 					}
+36: 				}else if(d==2){
+37: 					//4)왼쪽이동
+38: 					if(y-1>=0 && loc[x][y-1]==0){
+39: 						y--; // 왼쪽
+40: 					}else{   // 왼쪽 벽또는 숫자
+41: 						d=1;
+42: 						x++; // 아래
+43: 					}
+44: 				}else if(d==3){
+45: 					//3)위로 올라가자
+46: 					if(x-1>=0 && loc[x-1][y]==0){
+47: 						x--; // 위로
+48: 					}else{   // 위쪽 벽또는 숫자
+49: 						d=2; 
+50: 						y--; // 왼쪽
+51: 					}
+52: 				}
+53: 			}
+54: 		}
+55: 	}
+56: 	public void print(){
+57: 		for (int i = 0; i < m; i++) {
+58: 			for (int j = 0; j < n; j++) {
+59: //				System.out.printf("(%2d:[%d,%d])",
+60: //				loc[i][j],i,j);
+61: 				System.out.printf("(%2d)",loc[i][j]);
+62: 			}
+63: 			System.out.println();
+64: 		}
+65: 	}
+66: }

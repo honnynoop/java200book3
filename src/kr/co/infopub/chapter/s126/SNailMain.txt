@@ -1,0 +1,9 @@
+1: package kr.co.infopub.chapter.s126;
+2: public class SNailMain {
+3: 	public static void main(String[] args) {
+4: 		//시계 방향
+5: 		SNail snail=new SNail(7, 7);
+6: 		snail.make();
+7: 		snail.print();
+8: 	}
+9: }

@@ -1,0 +1,32 @@
+01: package kr.co.infopub.chapter.s099;
+02: public class Card {
+03: 	private String cardVal;
+04: 	public Card() {
+05: 		init();
+06: 	}
+07: 	public void init() {
+08: 		int a = (int)(Math.random()*CardUtil.SUIT.length); 
+09: 		int b = (int)(Math.random()*CardUtil.VALU.length);
+10: 		cardVal = CardUtil.SUIT[a] + CardUtil.VALU[b];
+11: 	}
+12: 	public String getCardVal() {
+13: 		return cardVal;
+14: 	}
+15: 	@Override
+16: 	public String toString() {
+17: 		return  "["+cardVal+"]";
+18: 	}
+19: 	@Override
+20: 	public boolean equals(Object obj) {
+21: 		boolean isS = false;
+22: 		Card cd = (Card)obj;
+23: 		if (cardVal.equals(cd.getCardVal())) {
+24: 			isS = true;
+25: 		}
+26: 		return isS;
+27: 	}
+28: 	@Override
+29: 	public int hashCode() {
+30: 		return  cardVal.hashCode()+137;
+31: 	}
+32: }

@@ -1,0 +1,30 @@
+01: package kr.co.infopub.chapter.s111;
+02: import java.text.SimpleDateFormat;
+03: import java.util.Calendar;
+04: // s062 RestDay 추가
+05: public class RestDay {
+06:  // 토, 일요일 인가?
+07:  public static boolean isRest(Calendar tod){
+08: 	boolean isRest=false;
+09: 	if(tod.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY || // 토요일
+10: 	    tod.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ){  //또는 일요일
+11: 		isRest=true;
+12: 	}
+13: 	return isRest;
+14:  }
+15:  // Calendar를 문자열로
+16:  public static String toYMD(Calendar dd){
+17: 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+18: 	return sdf.format(dd.getTime());
+19:  }	
+20:  public static void main(String[] args) {
+21: 	Calendar cal=Calendar.getInstance();
+22: 	int lastDay=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+23: 	for (int i= 1; i <=lastDay; i++) {
+24: 		cal.set(Calendar.DAY_OF_MONTH, i);  // 1일부터 마지막날까지 
+25: 		if(isRest(cal)){                    // 휴일(토,일)확인
+26: 			System.out.println(toYMD(cal)+" is Rest Day.");
+27: 		}             
+28: 	}
+29:  }
+30: }

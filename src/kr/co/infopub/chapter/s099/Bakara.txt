@@ -1,0 +1,32 @@
+01: package kr.co.infopub.chapter.s099;
+02: public class Bakara {
+03: 	CardPrint cp = new CardPrint();
+04: 	int whoWin=-1;
+05: 	public void start(){
+06: 		cp.make();     // 카드 만들기
+07: 		cp.shuffle();  // 카드 초기화
+08: 	}
+09: 	public void result() {    //누가 이겼는가 ?
+10: 		whoWin=-1;
+11: 		cp.print();
+12: 		System.out.println("결과 : ");
+13: 		System.out.println("---------------------");
+14: 		System.out.println("플레이어 : " + cp.returnPlayer());
+15: 		System.out.println("딜러 : " + cp.returnDealer());
+16: 		if (cp.returnPlayer() < cp.returnDealer()) {
+17: 			System.out.println("딜러 승!");
+18: 			whoWin=2;
+19: 		}
+20: 		else if (cp.returnPlayer() > cp.returnDealer()) {
+21: 			System.out.println("플레이어 승!");
+22: 			whoWin=1;
+23: 		}
+24: 		else {
+25: 			System.out.println("타이!");
+26: 			whoWin=3;
+27: 		}
+28: 	}
+29: 	public int getWhoWin() {
+30: 		return whoWin;
+31: 	}
+32: }
